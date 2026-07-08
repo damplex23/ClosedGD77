@@ -1,0 +1,12 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=japanese.chm
+Contents file=E8600.HHC
+Default Font=@ＭＳ ゴシック,8,0
+Display compile progress=No
+Index file=E8600.HHK
+Language=0x411 日本語 (日本)
+
+
+[INFOTYPES]
+

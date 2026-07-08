@@ -1,0 +1,1046 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resource>
+	<Settings>
+		<Item Id="MaxZoneCount" Text="32" />
+	</Settings>
+	<Language Id="Eng" Text="Czech/Česky" />
+	<AboutForm Text="About">
+		<Controls>
+			<Control Id="lblVersion" Text="" />
+			<Control Id="lblCompany" Text="Radioddity and GD-77 Community" />
+			<Control Id="btnClose" Text="OK" />
+      <Control Id="lblTranslationCredit" Text="" />
+		</Controls>
+	</AboutForm>
+	<BootItemForm Text="Boot Item">
+		<Controls>
+			<Control Id="grpBootScreen" Text="Úvodní obrazovka" />
+			<Control Id="lblBootScreen" Text="Úvodní obrazovka" />
+			<Control Id="lblLine2" Text="2. řádek" />
+			<Control Id="lblLine1" Text="1. řádek" />
+			<Control Id="lblBootPwd" Text="Heslo při zapnutí" />
+			<Control Id="chkBootPwdEnable" Text="Aktivovat heslo při zapnutí" />
+			<Control Id="chkBootScreen" Text="Úvodní obrazovka" />
+		</Controls>
+		<Commons>
+			<Item Id="BootScreen" Text="Obrázek,Text" />
+		</Commons>
+	</BootItemForm>
+	<ButtonForm Text="Buttons">
+		<Controls>
+			<Control Id="dgvOneTouch" Text="Režim,Typ volání,Volání,Zpráva">
+				<ControlItem Id="cmbMode" Text="Režim" />
+				<ControlItem Id="cmbCallType" Text="Typ volání" />
+				<ControlItem Id="cmbCallList" Text="Volání" />
+				<ControlItem Id="cmbMsg" Text="Zpráva" />
+			</Control>
+			<Control Id="lblEmgShortDur" Text="Emergency Short Press Duration [ms]" />
+			<Control Id="lblLongDur" Text="Long Press Duration [ms]" />
+			<Control Id="lblSK1" Text="SK1" />
+			<Control Id="lblSK2" Text="SK2" />
+			<Control Id="lblLongPress" Text="Dlouhé stisknutí" />
+			<Control Id="lblTK" Text="TK" />
+			<Control Id="lblShortPress" Text="Krátké stisknutí" />
+		</Controls>
+		<Commons>
+			<Item Id="ButtonItem" Text="Vypnito,Všechny oznamovací tóny On/Off,Tísňové volání Zapnuto,Tísňové volání Vypnuto,Vysoký/Nízký výkon,Monitor,Nuisance Delete,Rychlá volba 1,Rychlá volba 2,Rychlá volba 3,Rychlá volba 4,Rychlá volba 5,Rychlá volba 6,Převaděč/Talkaround,Sken Zap/Vyp,Přísný/Standardní Squelch,Soukromí Zap/Vyp,Vox Zap/Vyp,Výběr zóny,Indikátor aku,Lone Work Zap/Vyp,Trvalý Monitor,Phone Exit,Kanál nahoru,Kanál dolů,Informace o kanálu," />
+			<Item Id="Mode" Text="Vypnuto,Digitál,Analog" />
+			<Item Id="CallTypeD" Text="Hovor,Zpráva" />
+			<Item Id="CallTypeA" Text="DTMF Hovor" />
+		</Commons>
+	</ButtonForm>
+	<ChannelForm Text="Channel">
+		<Controls>
+			<Control Id="btnCopy" Text=">>" />
+			<Control Id="lblSquelch" Text="Squelch" />
+			<Control Id="lblSql" Text="Úroveň squelche" />
+			<Control Id="grpDigit" Text="Digitál" />
+			<Control Id="lblTimingPreference" Text="Timing Leader Prefernce" />
+			<Control Id="lblRepeaterSlot" Text="Slot převaděče" />
+			<Control Id="lblArs" Text="ARS" />
+			<Control Id="lblKeySwitch" Text="Soukromí" />
+			<Control Id="lblKey" Text="Skupina soukromí" />
+			<Control Id="lblTxColor" Text="Color Code" />
+			<Control Id="lblEmgSystem" Text="Tísňový systém" />
+			<Control Id="lblContact" Text="Kontakt" />
+			<Control Id="chkDualCapacity" Text="Dual Capacity Direct Mode" />
+			<Control Id="chkUdpDataHead" Text="Komprimovaná UDP datová hlavička" />
+			<Control Id="chkAllowTxInterupt" Text="Povolit přerušení" />
+			<Control Id="chkTxInteruptFreq" Text="Tx přerušitelné frekvence" />
+			<Control Id="chkPrivateCall" Text="Soukromý hovor potvrzen" />
+			<Control Id="chkDataCall" Text="Datový hovor potvrzen" />
+			<Control Id="chkEmgConfirmed" Text="Ack tísňového upozornění" />
+			<Control Id="chkEnhancedChAccess" Text="Rozšířený kanálový přístup" />
+			<Control Id="lblRxColor" Text="Rx Color Code" />
+			<Control Id="lblRxGroup" Text="TG List" />
+			<Control Id="chkRxOnly" Text="Pouze RX" />
+			<Control Id="chkAllowTalkaround" Text="Povolit Talkaround" />
+			<Control Id="grpAnalog" Text="Analog" />
+			<Control Id="lblChBandwidth" Text="Šířka [KHz]" />
+			<Control Id="lblVoiceEmphasis" Text="Voice Emphasis" />
+			<Control Id="lblSte" Text="STE" />
+			<Control Id="lblNonSte" Text="Bez STE" />
+			<Control Id="lblRxTone" Text="Rx Tón [Hz]" />
+			<Control Id="lblRxSignaling" Text="Rx Signaling System" />
+			<Control Id="lblUnmuteRule" Text="Unmute Rule" />
+			<Control Id="lblArtsInterval" Text="Interval ARTS [s]" />
+			<Control Id="lblArts" Text="ARTS" />
+			<Control Id="lblPttidType" Text="Typ PTTID" />
+			<Control Id="lblTxSignaling" Text="Tx Oznamovací systém" />
+			<Control Id="lblTxTone" Text="Tx Tón [Hz]" />
+			<Control Id="chkDataPl" Text="PL pro data" />
+			<Control Id="chkLoneWoker" Text="Lone Work" />
+      <Control Id="chkOpenGD77ScanAllSkip" Text="Scan: Přeskočit vše" />
+			<Control Id="chkVox" Text="Vox" />
+			<Control Id="chkAutoScan" Text="Auto Sken" />
+      <Control Id="chkOpenGD77ScanZoneSkip" Text="Scan: Přeskočit zónu" />
+       <Control Id="lblChName" Text="Jméno" />
+			<Control Id="lblChMode" Text="Režim" />
+			<Control Id="lblTot" Text="TOT [s]" />
+			<Control Id="lblTotRekey" Text="TOT Prodleva před znovuklíčováním [s]" />
+			<Control Id="lblRssiThreshold" Text="RSSI práh [dBm]" />
+			<Control Id="lblRxRefFreq" Text="Rx Referenční frekvenci" />
+			<Control Id="lblTxRefFreq" Text="Tx Referenční frekvenci" />
+			<Control Id="lblRxFreq" Text="Rx Frek [MHz]" />
+			<Control Id="lblPower" Text="Výkon" />
+			<Control Id="lblAdmitCriteria" Text="Přijmout kritéria" />
+			<Control Id="lblTxFreq" Text="Tx Frek [MHz]" />
+			<Control Id="lblScanList" Text="Scan List" />
+      <Control Id="lblxband" Text="Pozor: RX a TX pásma jsou rozdílná. Toto může ovlivnit jak TRX reaguje." />
+			<Control Id="tsrCh" Text="toolStrip1">
+				<ToolStripItem Id="tslblInfo" Text="" />
+				<ToolStripItem Id="tsbtnFirst" Text="První" />
+				<ToolStripItem Id="tsbtnPrev" Text="Předchozí" />
+				<ToolStripItem Id="tsbtnNext" Text="Další" />
+				<ToolStripItem Id="tsbtnLast" Text="Poslední" />
+				<ToolStripItem Id="tsbtnAdd" Text="Přidat" />
+				<ToolStripItem Id="tsbtnDel" Text="Vymazat" />
+			</Control>
+			<Control Id="mnsCh" Text="menuStrip1" />
+		</Controls>
+		<Commons>
+			<Item Id="ChMode" Text="Analog,Digitál" />
+			<Item Id="RefFreq" Text="Nízká,Střední,Vysoká" />
+			<Item Id="Power" Text="Nízký,Vysoký" />
+			<Item Id="AdmitCriterica" Text="Vždy,S volným kanálem,CTCSS/DCS" />
+			<Item Id="AdmitCritericaD" Text="Vždy,S volným kanálem,Se stejným color code" />
+			<Item Id="Squelch" Text="Přísný,Standardní" />
+			<Item Id="VoiceEmphasis" Text="Vypnuto,Před a po,Po,Před" />
+			<Item Id="Ste" Text="Od frekvence,120°,180°,240°" />
+			<Item Id="NonSte" Text="Vypnuto,Od frekvence" />
+			<Item Id="SignalingSystem" Text="Vypnuto,DTMF" />
+			<Item Id="UnmuteRule" Text="Běžný Unmute Mute,A Unmute Mute,A Unmute nebo Mute" />
+			<Item Id="PttidType" Text="Vypnuto,Před,Po,Před i po" />
+			<Item Id="Arts" Text="Vypnuto,Tx,Rx,Tx a Rx" />
+			<Item Id="TimingPreference" Text="Preferovaný,Eligible,Ineligible" />
+			<Item Id="Ars" Text="Vypnuto,System Change" />
+			<Item Id="KeySwitch" Text="Vyp,Zap" />
+		</Commons>
+	</ChannelForm>
+	<ChannelsForm Text="Channels">
+			<Controls>
+			<Control Id="btnImport" Text="Importovat/Přidat" />
+      <Control Id="btnImportClearAll" Text="Importovat a vymazat vše"/>
+      <Control Id="btnExport" Text="Export vybrané" />
+			<Control Id="btnDeleteSelect" Text="Vymazat vybrané" />
+			<Control Id="btnClear" Text="Vymazat vše" />
+			<Control Id="btnDelete" Text="Vymazat" />
+			<Control Id="btnAdd" Text="Přidat" />
+			<Control Id="dgvChannels" Text="Číslo,Jméno,Rx Frek,Tx Frek,Ch Mode,Výkon,Rx Tón,Tx Tón,Color Code,TG List,Kontakt,Slot">
+				<ControlItem Id="" Text="Číslo" />
+				<ControlItem Id="" Text="Jméno" />
+				<ControlItem Id="" Text="Rx Frek" />
+				<ControlItem Id="" Text="Tx Frek" />
+				<ControlItem Id="" Text="Ch Mode" />
+				<ControlItem Id="" Text="Výkon" />
+				<ControlItem Id="" Text="Rx Tón" />
+				<ControlItem Id="" Text="Tx Tón" />
+				<ControlItem Id="" Text="Color Code" />
+				<ControlItem Id="" Text="TG List" />
+				<ControlItem Id="" Text="Kontakt" />
+				<ControlItem Id="" Text="Slot" />
+			</Control>
+		</Controls>
+		<Commons>
+      <Item Id="DisplayHeaderText" Text="Číslo,Jméno,Ch Mode,Rx Frek,Tx Frek,Color Code,Slot,Kontakt,TG List,Scan List,Rx Tón,Tx Tón"/>
+      <Item Id="ExportHeaderText" Text="Typ dat,Jméno,Typ kanálu,Rx Frekvence,Tx Frekvence,Color Code,Timeslot,Kontakt,Typ kontaktu,ID kontaktu,Rx kupina,Scan list,Zóna,RX CTCSS,TX CTCSS,Výkon,Šířka,Pouze RX,Squelch,Přiznat TX,TOT,TOT Znovuklíčování,Oznamování TX,Oznamování RX,Soukromá skupina,Tísňový systém,Flags1,Flags2,Flags3,Flags4,RssiThreshold,VoiceEmphasis,TxSignaling,UnmuteRule,RxSignaling,ArtsInterval" />
+    </Commons>
+	</ChannelsForm>
+	<CommPrgForm Text="">
+		<Controls>
+			<Control Id="btnCancel" Text="Zrušit" />
+		</Controls>
+		<Commons>
+			<Item Id="ButtonItem" Text="Vypnuto,Všechny ozn. tóny Zap/Vyp,Tísň. vol. Zap,Tísň. vol. Vyp,Vysoký/Nízký výkon,Monitor,Nuisance Delete,Rychlá volba 1,Rychlá volba 2,Rychlá volba 3,Rychlá volba 4,Rychlá volba 5,Rychlá volba 6,Převaděč/Talkaround,Sken Zap/Vyp,Přísný/Standardní Squelch,Soukromí Zap/Vyp,Vox Zap/Vyp, Zvolit zónu,Indikátor aku,Lone Work Zap/Vyp,Trvalý Monitor,Phone Exit,Kanál Nahoru,Kanál Dolů,Info o kanálu" />
+			<Item Id="Mode" Text="Vypnuto,Digitál,Analog" />
+			<Item Id="CallTypeD" Text="Hovor,Zpráva" />
+			<Item Id="CallTypeA" Text="DTMF Hovor" />
+		</Commons>
+	</CommPrgForm>
+	<ContactForm Text="Digital Contact">
+		<Controls>
+			<Control Id="chkCallRxTone" Text="Call Receive Tone" />
+			<Control Id="lblRingStyle" Text="Druh vyzvánění" />
+			<Control Id="lblCallType" Text="Typ hovoru" />
+			<Control Id="lblName" Text="Jméno" />
+			<Control Id="lblCallId" Text="ID hovoru" />
+		</Controls>
+		<Commons>
+			<Item Id="CallType" Text="Skupinové volání,Soukromé volání,Všeobecné volání" />
+			<Item Id="CallRxTone" Text="Vyp,Zap" />
+		</Commons>
+	</ContactForm>
+	<ContactsForm Text="Contact">
+		<Controls>
+			<Control Id="btnImport" Text="Import" />
+			<Control Id="btnExport" Text="Export" />
+			<Control Id="btnDeleteSelect" Text="Vymazat vybrané" />
+			<Control Id="btnClear" Text="Vyčistit" />
+			<Control Id="btnDelete" Text="Vymazat" />
+			<Control Id="btnAdd" Text="Přidat" />
+      <Control Id="btnInternetDownload" Text="Stáhnout z internetu" />      
+      <Control Id="dgvContacts" Text="Number,Name,Call ID,Type,Ring Style,Call Receive Tone,Repeater Slot override,">
+				<ControlItem Id="" Text="Číslo" />
+				<ControlItem Id="" Text="Jméno" />
+				<ControlItem Id="" Text="ID Hovoru" />
+				<ControlItem Id="" Text="Typ" />
+				<ControlItem Id="" Text="Druh vyzvánění" />
+				<ControlItem Id="" Text="Call Receive Tone" />
+        <ControlItem Id="" Text="Ruční nastavení timeslotu" />
+			</Control>
+		</Controls>
+		<Commons>
+			<Item Id="HeaderText" Text="Číslo,Jméno,ID Hovoru,Typ,Druh vyzvánění,Call Receive Tone,Ruční nastavení timeslotu," />
+		</Commons>
+	</ContactsForm>
+	<DeviceInfoForm Text="Basic Information">
+		<Controls>
+			<Control Id="lblTo1" Text="-" />
+			<Control Id="lblTo2" Text="-" />
+			<Control Id="lblSection1" Text="Frekvenční rozsah 1 [MHz]" />
+			<Control Id="lblDspFwVer" Text="Verze DSP" />
+			<Control Id="lblFirmwareVer" Text="Verze firmwaru" />
+			<Control Id="lblHardwareVer" Text="Verze hardwaru" />
+			<Control Id="lblCpsSwVer" Text="Verze CPS" />
+			<Control Id="lblSn" Text="Sériové číslo" />
+			<Control Id="lblSection2" Text="Frekvenční rozsah 2 [MHz]" />
+			<Control Id="lblLastPrgTime" Text="Last Programed Date" />
+			<Control Id="lblModel" Text="Název modelu" />
+		</Controls>
+	</DeviceInfoForm>
+	<DigitalKeyContactForm Text="Number Key Assign">
+		<Controls>
+			<Control Id="dgvContact" Text="Menu">
+				<ControlItem Id="cmbContact" Text="Menu" />
+			</Control>
+		</Controls>
+		<Commons>
+			<Item Id="DigitKey" Text="Number Key " />
+		</Commons>
+	</DigitalKeyContactForm>
+	<DtmfContactForm Text="DTMF Contact">
+		<Controls>
+			<Control Id="dgvContact" Text="Name,Number">
+				<ControlItem Id="txtName" Text="Name" />
+				<ControlItem Id="txtCode" Text="Number" />
+			</Control>
+			<Control Id="btnAdd" Text="Přidat" />
+			<Control Id="btnDel" Text="Vymazat" />
+		</Controls>
+	</DtmfContactForm>
+	<DtmfForm Text="DTMF">
+		<Controls>
+			<Control Id="chkSideTone" Text="DTMF Side Tone" />
+			<Control Id="lblUpCode" Text="PTTID Up Code" />
+			<Control Id="lblDownCode" Text="PTTID Down Code" />
+			<Control Id="lblSelfID" Text="Self ID" />
+			<Control Id="lblRespHoldTime" Text="Response Hold [s]" />
+			<Control Id="lblKillCode" Text="Kill Code" />
+			<Control Id="lblAutoResetTime" Text="Auto Reset Time [s]" />
+			<Control Id="lblDecTime" Text="Decode Time [s]" />
+			<Control Id="lblWakeCode" Text="Wake Code" />
+			<Control Id="lblDelimiter" Text="Delimiter" />
+			<Control Id="lblGrpCallCode" Text="Group Code" />
+			<Control Id="lblDecResp" Text="Decode Response" />
+			<Control Id="lblFstDlyTime" Text="First Digit Delay [ms]" />
+			<Control Id="lblKillWakeDec" Text="Kill/Wake Code" />
+			<Control Id="lblFstDur" Text="First Digit Duration [ms]" />
+			<Control Id="lblKillType" Text="Kill Type" />
+			<Control Id="lblOtherDur" Text="*# Duration [ms]" />
+			<Control Id="lblRate" Text="DTMF Rate" />
+		</Controls>
+		<Commons>
+			<Item Id="DecodeResp" Text="None,Reminder,Reply,Reminder and Reply" />
+			<Item Id="GroupCode" Text="None,A,B,C,D,*,#" />
+			<Item Id="KillType" Text="Tx Disable,Tx and Rx Disable,Kill" />
+			<Item Id="KillWakeDec" Text="Off,On" />
+		</Commons>
+	</DtmfForm>
+	<EmergencyForm Text="Emergency System">
+		<Controls>
+			<Control Id="lblAlias" Text="Name" />
+			<Control Id="lblAlarmType" Text="Alarm Type" />
+			<Control Id="lblAlarmMode" Text="Mode" />
+			<Control Id="lblRevertCh" Text="Revert Channel" />
+			<Control Id="lblImpoliteRetries" Text="Impolite Retries" />
+			<Control Id="lblPoliteRetries" Text="Polite Retries" />
+			<Control Id="lblCycles" Text="Cycles" />
+			<Control Id="lblTxCycle" Text="Tx Cycle Time [s]" />
+			<Control Id="lblRxCycle" Text="Rx Cycle Time [s]" />
+		</Controls>
+		<Commons>
+			<Item Id="AlarmType" Text="Disable,Regular,Silent,Silent w/ Voice" />
+			<Item Id="AlarmMode" Text="Emergency Alarm,Emergency Alarm w/ call,Emergency Alarm w/ Voice" />
+			<Item Id="RevertCh" Text="None,Selected" />
+		</Commons>
+	</EmergencyForm>
+	<EncryptForm Text="Privacy">
+		<Controls>
+			<Control Id="dgvKey" Text="Key">
+				<ControlItem Id="txtKey" Text="Key" />
+			</Control>
+			<Control Id="lblType" Text="Privacy Type" />
+			<Control Id="btnDel" Text="Delete" />
+			<Control Id="lblKeyLen" Text="Key Length" />
+			<Control Id="btnAdd" Text="Add" />
+		</Controls>
+		<Commons>
+			<Item Id="EncryptType" Text="None,Basic" />
+		</Commons>
+	</EncryptForm>
+	<GeneralSetForm Text="Základní nastavení">
+		<Controls>
+			<Control Id="chkTxExitTone" Text="Ukončovací tón pro TX" />
+			<Control Id="grpBeep" Text="Oznamovací tón" />
+			<Control Id="chkResetTone" Text="Reset Tón" />
+			<Control Id="chkUnifamiliarNumber" Text="Unifamiliar Number Tone" />
+			<Control Id="lblCallAlertDur" Text="Call Alert Tone Duration [s]" />
+			<Control Id="chkSelfTestPassTone" Text="Self Test Pass Tone" />
+			<Control Id="chkCrescendoTone" Text="Enhanced Tone*" />
+			<Control Id="chkChFreeTone" Text="Channel Freq Indication Tone" />
+			<Control Id="chkDisableAllTone" Text="Disable All Tone" />
+			<Control Id="lblTalkPermitTone" Text="Talk Permit Tone" />
+			<Control Id="lblArtsTone" Text="ARTS Tone" />
+			<Control Id="grpVoice" Text="Jazyk" />
+			<Control Id="chkChVoice" Text="Channel Voice" />
+			<Control Id="lblVoiceLang" Text="Jazyk hlasu" />
+			<Control Id="grpSaveMode" Text="Šetření baterie" />
+			<Control Id="chkBatteryRx" Text="Příjem" />
+			<Control Id="chkBatteryPreamble" Text="Preamble" />
+			<Control Id="grpLoneWork" Text="Lone Worker" />
+			<Control Id="lblReminderTmr" Text="Časovač upozornění [s]" />
+			<Control Id="lblRespTmr" Text="Response Timer [min]" />
+			<Control Id="grpTalkAround" Text="Talkaround" />
+			<Control Id="lblPrivateHang" Text="Private Call Hang Time [ms]" />
+			<Control Id="lblGrpHold" Text="Group Call Hang Time [ms]" />
+			<Control Id="chkDisableAllLeds" Text="Vypnout všechny LEDky" />
+			<Control Id="lblRadioName" Text="Jméno TRX" />
+			<Control Id="lblRadioID" Text="Radio ID" />
+			<Control Id="lblTxPreambleDur" Text="Tx Preamble Duration [ms]" />
+			<Control Id="lblProgramPwd" Text="Heslo k programu" />
+			<Control Id="lblRxLowBatt" Text="Rx Low Battery Interval [s]" />
+			<Control Id="chkKillState" Text="Kill State" />
+			<Control Id="chkTestMode" Text="Zkušební režim" />
+			<Control Id="lblArsInitDly" Text="ARS Initialization Delay [min]" />
+			<Control Id="chkDataEnCtrlStation" Text="Data Enabled COntrol Station" />
+			<Control Id="lblMonitorType" Text="Monitor Type" />
+			<Control Id="lblVoxSense" Text="Citlivost VOXu" />
+			<Control Id="chkPrivateCall" Text="Soukromý hovor" />
+			<Control Id="chkTxInhibit" Text="Tx Inhibit Quick Key Override" />
+			<Control Id="lblUpChMode" Text="Up Channel Mode" />
+			<Control Id="lblDownChMode" Text="Down Channel Mode" />
+			<Control Id="grpScan" Text="Sken" />
+			<Control Id="lblScanMode" Text="Mód skenu" />
+		</Controls>
+		<Commons>
+			<Item Id="MonitorType" Text="Open Squelch,Silent" />
+			<Item Id="TalkPermitTone" Text="None,Digital,Analog,Both" />
+			<Item Id="ArtsToneName" Text="Disable,Once,Always" />
+			<Item Id="ChannelMode" Text="Channel,VFO" />
+			<Item Id="ScanMode" Text="Time,Carrier,Search" />
+		</Commons>
+	</GeneralSetForm>
+	<HelpForm Text="HelpView">
+		<Controls />
+	</HelpForm>
+	<MainForm Text="Radioddity GD-77 CPS 3.0.6 Komunitní edice">
+		<TreeView>
+			<TreeNode Id="Model" Text="GD-77" />
+			<TreeNode Id="BasicInfo" Text="Základní informace" />
+			<TreeNode Id="BootItem" Text="Boot Item" />
+			<TreeNode Id="Menu" Text="Menu" />
+			<TreeNode Id="NumKeyAssign" Text="Přiřadit klávesu" />
+			<TreeNode Id="GeneralSetting" Text="Základní nastavení" />
+			<TreeNode Id="Buttons" Text="Tlačítka" />
+			<TreeNode Id="TextMsg" Text="Textová zpráva" />
+			<TreeNode Id="Pivacy" Text="Soukromí" />
+			<TreeNode Id="SignalingSys" Text="Oznamovací systém" />
+			<TreeNode Id="EmergencySys" Text="Tísňový systém" />
+			<TreeNode Id="Contact" Text="Kontakt" />
+			<TreeNode Id="DtmfContact" Text="DTMF" />
+			<TreeNode Id="DigitalContact" Text="Digitální kontakty" />
+			<TreeNode Id="RxGroupList" Text="TG Skupiny" />
+			<TreeNode Id="Zone" Text="Zóny" />
+			<TreeNode Id="Channel" Text="Kanály" />
+			<TreeNode Id="Scan" Text="Sken" />
+			<TreeNode Id="DtmfSignal" Text="DTMF" />
+			<TreeNode Id="VFO" Text="VFO" />
+			<TreeNode Id="VFOA" Text="VFO A" />
+			<TreeNode Id="VFOB" Text="VFO B" />
+		</TreeView>
+		<MenuStrip>
+			<MenuItem Id="tsmiFile" Text="&amp;Soubor" />
+			<MenuItem Id="tsmiNew" Text="Nový" />
+			<MenuItem Id="tsmiSave" Text="Uložit" />
+			<MenuItem Id="tsmiOpen" Text="Otevřít" />
+			<MenuItem Id="tsmiExit" Text="Zavřít" />
+			<MenuItem Id="tsmiSetting" Text="Nastavení" />
+			<MenuItem Id="tsmiDeviceInfo" Text="Základní informace" />
+			<MenuItem Id="tsmiBootItem" Text="Boot Item" />
+			<MenuItem Id="tsmiMenu" Text="Menu" />
+			<MenuItem Id="tsmiNumKeyContact" Text="Přiřadit klávesu" />
+			<MenuItem Id="tsmiGerneralSet" Text="Základní nastavení" />
+			<MenuItem Id="tsmiButton" Text="Tlačítka" />
+			<MenuItem Id="tsmiTextMsg" Text="Textová zpráva" />
+			<MenuItem Id="tsmiEncrypt" Text="Soukromí" />
+			<MenuItem Id="tsmiSignaling" Text="Oznamování" />
+      <MenuItem Id="tsmiSignalingSystem" Text="Oznamovací systém" />
+			<MenuItem Id="tsmiDtmf" Text="DTMF" />
+			<MenuItem Id="tsmiEmgSystem" Text="Tísňový systém" />
+			<MenuItem Id="tsmiContact" Text="Kontakt" />
+			<MenuItem Id="tsmiDtmfContact" Text="DTMF" />
+			<MenuItem Id="tsmiDmrContact" Text="Digitální kontakt" />
+			<MenuItem Id="tsmiContacts" Text="Kontakty" />
+			<MenuItem Id="tsmiGrpRxList" Text="TG Skupiny" />
+			<MenuItem Id="tsmiZone" Text="Zóna" />
+			<MenuItem Id="tsmiZoneList" Text="ZoneList" />
+			<MenuItem Id="tsmiChannels" Text="Kanály" />
+			<MenuItem Id="tsmiScan" Text="Sken" />
+      <MenuItem Id="tsmiScanBasic" Text="Základní sken" />      
+			<MenuItem Id="tsmiScanList" Text="Seznam skenu" />
+			<MenuItem Id="tsmiProgram" Text="Program" />
+			<MenuItem Id="tsmiRead" Text="Číst" />
+			<MenuItem Id="tsmiWrite" Text="Zapsat" />
+			<MenuItem Id="tsmiBasic" Text="Základní" />
+			<MenuItem Id="tsmiView" Text="Prohlédnout" />
+			<MenuItem Id="tsmiTree" Text="Stromový pohled" />
+			<MenuItem Id="tsmiHelp" Text="Pohled nápovědy" />
+			<MenuItem Id="tsmiToolBar" Text="Panel nástrojů" />
+			<MenuItem Id="tsmiStatusBar" Text="Stavový řádek" />
+			<MenuItem Id="tsmiWindow" Text="Okno" />
+			<MenuItem Id="tsmiCascade" Text="Kaskádovat" />
+			<MenuItem Id="tsmiTileHor" Text="Kaskádovat vodorovně" />
+			<MenuItem Id="tsmiTileVer" Text="Kaskádovat svisle" />
+			<MenuItem Id="tsmiCloseAll" Text="Zavřít vše" />
+			<MenuItem Id="tsmiAbout" Text="O programu" />
+			<MenuItem Id="tsmiLanguage" Text="Jazyk" />
+			<MenuItem Id="tsmiEnglish" Text="Angličtina/English" />
+			<MenuItem Id="tsmiChinese" Text="Čínština/Chinese" />
+      <MenuItem Id="tsmiExtras" Text="Další nastavení" />
+      <MenuItem Id="tsmiContactsDownload" Text="Stáhnout kontakty" />
+      <MenuItem Id="tsmiDMRID" Text="DMR ID" />
+      <MenuItem Id="tsmiCalibration" Text="Kalibrace" />     
+      
+      <MenuItem Id="tsmiOpenGD77" Text="Podpora OpenGD77" />
+      <MenuItem Id="tsmiFirmwareLoader" Text="Načíst firmware" />    
+    </MenuStrip>
+		<ContextMenuStrip>
+			<MenuItem Id="tsmiAdd" Text="Přidat" />
+			<MenuItem Id="tsmiClear" Text="Vyčistit" />
+		</ContextMenuStrip>
+		<ContextMenuStrip>
+			<MenuItem Id="tsmiDel" Text="Vymazat" />
+			<MenuItem Id="tsmiRename" Text="Přejmenovat" />
+			<MenuItem Id="tsmiCopy" Text="Kopírovat" />
+			<MenuItem Id="tsmiPaste" Text="Vložit" />
+      <MenuItem Id="tsmiMoveUp" Text="Posunout nahoru" />
+      <MenuItem Id="tsmiMoveDown" Text="Posunout dolů" />
+    </ContextMenuStrip>
+		<ContextMenuStrip>
+			<MenuItem Id="tsmiCollapseAll" Text="Svinout vše" />
+			<MenuItem Id="tsmiExpandAll" Text="Rozvinout vše" />
+		</ContextMenuStrip>
+		<ContextMenuStrip>
+			<MenuItem Id="tsmiAddContact" Text="Přidat" />
+			<MenuItem Id="tsmiGroupCall" Text="Group Call" />
+			<MenuItem Id="tsmiPrivateCall" Text="Private Call" />
+			<MenuItem Id="tsmiAllCall" Text="All Call" />
+		</ContextMenuStrip>
+		<ToolStrip>
+			<ToolItem Id="tsbtnNew" Text="Nový" />
+			<ToolItem Id="tsbtnOpen" Text="Otevřít" />
+			<ToolItem Id="tsbtnSave" Text="Uložit" />
+			<ToolItem Id="tsbtnRead" Text="Číst" />
+			<ToolItem Id="tsbtnWrite" Text="Zapsat" />
+			<ToolItem Id="tsbtnAbout" Text="O aplikaci" />
+		</ToolStrip>
+	</MainForm>
+	<MenuForm Text="Menu">
+		<Controls>
+			<Control Id="grpCall" Text="Seznam volání" />
+			<Control Id="chkReceivedCall" Text="Příchozí" />
+			<Control Id="chkDialedCall" Text="Odchozí" />
+			<Control Id="chkMissedCall" Text="Zmeškané" />
+			<Control Id="grpSetting" Text="Základní" />
+			<Control Id="chkDoubleWait" Text="Dvojtý Standby" />
+			<Control Id="lblDwSwitch" Text="Dvojtý Standby" />
+			<Control Id="lblKeyTone" Text="Key Tone" />
+			<Control Id="lblBacklightTime" Text="Podsvětlení [s]" />
+			<Control Id="chkSql" Text="Squelch" />
+			<Control Id="chkBacklight" Text="Podsvětlení" />
+			<Control Id="chkKeyboardLock" Text="Uzamknutí kláves" />
+			<Control Id="chkVox" Text="Vox" />
+			<Control Id="chkToneHint" Text="Tóny/Upozornění" />
+			<Control Id="chkLed" Text="Indikátor LED" />
+			<Control Id="lblChDispMode" Text="Režim zobrazení kanálu" />
+			<Control Id="chkPwdLock" Text="Heslo a zámek" />
+			<Control Id="lblMenuLang" Text="Jazyk menu" />
+			<Control Id="lblWorkMode" Text="Work Mode" />
+			<Control Id="chkPower" Text="Výkon" />
+			<Control Id="chkBootScreen" Text="Úvodní obrazovka" />
+			<Control Id="chkEncrypt" Text="Soukromí" />
+			<Control Id="lblKeyLockTime" Text="Automatické zamknutí kláves [s]" />
+			<Control Id="chkTalkAround" Text="Talkaround" />
+			<Control Id="chkChDisp" Text="Zobrazení kanálu" />
+			<Control Id="grpContact" Text="Kontakt" />
+			<Control Id="chkOneKeyDial" Text="Rychlá volba" />
+			<Control Id="chkRadioDetect" Text="Ověření rádia" />
+			<Control Id="chkRadioActive" Text="Rádio je aktivní" />
+			<Control Id="chkContactEdit" Text="Upravit" />
+			<Control Id="chkRadioKill" Text="Rádio je vypnuté" />
+			<Control Id="chkManualDial" Text="Ruční vytáčení" />
+			<Control Id="chkRemoteMonitor" Text="Vzdálený Monitor" />
+			<Control Id="chkCallPrompt" Text="Upozornění na hovor" />
+			<Control Id="grpScan" Text="Sken" />
+			<Control Id="chkScanEditList" Text="Upravit seznam" />
+			<Control Id="chkScan" Text="Sken" />
+			<Control Id="grpBasic" Text="Basic" />
+			<Control Id="lblMenuHangTime" Text="Prodleva v menu [s]" />
+			<Control Id="chkInfo" Text="Informace" />
+			<Control Id="chkFm" Text="FM" />
+			<Control Id="chkGps" Text="Gps" />
+			<Control Id="chkP1Key" Text="P1 Key" />
+			<Control Id="lblBrightness" Text="Podsvětlení" />
+		</Controls>
+		<Commons>
+			<Item Id="KeyLockTime" Text="Ručně,5s,10s,15s" />
+			<Item Id="BacklightTime" Text="Vždy zapnuto,Vždy vypnuto,5s,10s" />
+			<Item Id="WorkMode" Text="VFO,Paměť,Kanál" />
+			<Item Id="ChDispMode" Text="Číslo,Jméno,Frekvence" />
+			<Item Id="KeyTone" Text="Vyp,Zap" />
+			<Item Id="DoubleWait" Text="Vyp,Dvojtý/Dvojtý,Dvojty/Jednoduchý" />
+			<Item Id="MenuLang" Text="Angličtina,中文" />
+		</Commons>
+	</MenuForm>
+	<NormalScanForm Text="Scan">
+		<Controls>
+			<Control Id="grpSelected" Text="Člen" /> 
+			<Control Id="chkTalkback" Text="Talkback" />
+			<Control Id="grpUnselected" Text="K dispozici" />
+			<Control Id="chkChMark" Text="Značka kanálu" />
+			<Control Id="lblTxDesignatedCh" Text="Vyhrazený kanál pro TX" />
+			<Control Id="lblPriorityCh1" Text="Prioritní kanál 1" />
+			<Control Id="lblSignalingHold" Text="Signaling Hold Time [ms]" />
+			<Control Id="lblName" Text="Jméno" />
+			<Control Id="lblPLType" Text="Typ PL" />
+			<Control Id="lblPriorityCh2" Text="Prioritní kanál 2" />
+			<Control Id="lblPrioritySample" Text="Priority Sample Time [ms]" />
+			<Control Id="btnDown" Text="Dolů" />
+			<Control Id="btnUp" Text="Nahoru" />
+			<Control Id="btnDel" Text="Vymazat" />
+			<Control Id="btnAdd" Text="Přidat" />
+		</Controls>
+		<Commons>
+			<Item Id="PriorityCh" Text="Žádný,Zvolený" />
+			<Item Id="TxDesignatedCh" Text="Poslední aktivní kanál,Zvolený" />
+			<Item Id="PlType" Text="Non-Priority Channel,Disable,Priority Channel,Priority and Non-Priority Channel" />
+		</Commons>
+	</NormalScanForm>
+	<PasswordForm Text="Password">
+		<Controls>
+			<Control Id="btnCancel" Text="Zrušit" />
+			<Control Id="btnOk" Text="Potvrdit" />
+			<Control Id="lblPwd" Text="Heslo" />
+		</Controls>
+	</PasswordForm>
+	<PowerPwdForm Text="Password">
+		<Controls>
+			<Control Id="btnCancel" Text="Zrušit" />
+			<Control Id="btnOk" Text="Potvrdit" />
+			<Control Id="lblPwd" Text="Heslo" />
+		</Controls>
+	</PowerPwdForm>
+	<RxGroupListForm Text="TG List">
+		<Controls>
+			<Control Id="btnDown" Text="Dolů" />
+			<Control Id="btnUp" Text="Nahoru" />
+			<Control Id="grpSelected" Text="Člen" />
+			<Control Id="btnAdd" Text="Přidat" />
+			<Control Id="grpUnselected" Text="K dispozici" />
+			<Control Id="btnDel" Text="Vymazat" />
+			<Control Id="lblName" Text="Jméno" />
+		</Controls>
+	</RxGroupListForm>
+	<SignalingBasicForm Text="Signaling Basic">
+		<Controls>
+			<Control Id="chkCallAlert" Text="Call Alert Encode" />
+			<Control Id="chkRadioDisable" Text="Radio Disable Decode" />
+			<Control Id="chkRemoteMonitor" Text="Remote Monitor Decode" />
+			<Control Id="chkEmgRM" Text="Emergency Remote Monitor Decode" />
+			<Control Id="lblTxSyncWakeTot" Text="Tx Sync Wakeup TOT [ms]" />
+			<Control Id="chkSelCall" Text="Self Call Encode" />
+			<Control Id="lblTxWakeMsgLimit" Text="Tx Wakeup Message Limit" />
+			<Control Id="lblSelCallToneId" Text="Self Call Tone/ID" />
+			<Control Id="lblRMDuration" Text="Remote Monitor Duration [s]" />
+			<Control Id="lblSelCallHang" Text="Self Call Hang Time [ms]" />
+			<Control Id="lblAutoResetTimer" Text="Auto Reset Timer [s]" />
+		</Controls>
+	</SignalingBasicForm>
+	<ScanBasicForm Text="Scan Basic">
+		<Controls>
+      <Control Id="lblScanTime" Text="Čas skenu [s]" />
+			<Control Id="lblDigitHang" Text="Digital Hang Time [ms]" />
+			<Control Id="lblAnalogHang" Text="Analog Hang Time [ms]" />
+			<Control Id="lblVoteHang" Text="Vote Scan Hang Time [s]" />
+			<Control Id="lblFastVoteRssi" Text="Fast Vote RSSI Threshold [dB]" />
+			<Control Id="lblStartVoteRssi" Text="Start Vote RSSI Threshold [dB]" />
+			<Control Id="chkPriorityAlert" Text="Priority Alert" />
+		</Controls>
+	</ScanBasicForm>
+	<TextMsgForm Text="Text Message">
+		<Controls>
+			<Control Id="dgvMsg" Text="Obsah">
+				<ControlItem Id="txtMessage" Text="Textová zpráva" />
+			</Control>
+			<Control Id="btnAdd" Text="Přidat" />
+			<Control Id="btnDel" Text="Vymazat" />
+		</Controls>
+	</TextMsgForm>
+	<TreeForm Text="TreeView">
+		<Controls />
+	</TreeForm>
+	<VfoForm Text="Vfo">
+		<Controls>
+			<Control Id="btnCopy" Text=">>" />
+			<Control Id="lblSquelch" Text="Squelch" />
+			<Control Id="lblSql" Text="Úroveň squelche" />
+			<Control Id="grpDigit" Text="Digitál" />
+			<Control Id="lblTimingPreference" Text="Timing Leader Prefernce" />
+			<Control Id="lblRepeaterSlot" Text="Slot převaděče" />
+			<Control Id="lblArs" Text="ARS" />
+			<Control Id="lblKeySwitch" Text="Soukromá" />
+			<Control Id="lblKey" Text="Soukromá skupina" />
+			<Control Id="lblTxColor" Text="Color Code" />
+			<Control Id="lblEmgSystem" Text="Tísňový systém" />
+			<Control Id="lblContact" Text="Kontakt" />
+			<Control Id="chkDualCapacity" Text="Dvojkapacitný přímý režim" />
+			<Control Id="chkUdpDataHead" Text="Komprimovaná UDP datová hlavička" />
+			<Control Id="chkAllowTxInterupt" Text="Povolit přerušení" />
+			<Control Id="chkTxInteruptFreq" Text="Přerušitelné frekvence pro TX" />
+			<Control Id="chkPrivateCall" Text="Soukromý hovor potvrzen" />
+			<Control Id="chkDataCall" Text="Datový hovor potvrzen" />
+			<Control Id="chkEmgConfirmed" Text="Potvrzení nouzového alarmu" />
+			<Control Id="chkEnhancedChAccess" Text="Rozšířený kanálový přístup" />
+			<Control Id="lblRxColor" Text="Rx Color Code" />
+			<Control Id="lblRxGroup" Text="TG List" />
+			<Control Id="chkRxOnly" Text="Pouze RX" />
+			<Control Id="chkAllowTalkaround" Text="Povolit Talkaround" />
+			<Control Id="grpAnalog" Text="Analog" />
+			<Control Id="lblChBandwidth" Text="Šiřka [KHz]" />
+			<Control Id="lblVoiceEmphasis" Text="Voice Emphasis" />
+			<Control Id="lblSte" Text="STE" />
+			<Control Id="lblNonSte" Text="Bez STE" />
+			<Control Id="lblRxTone" Text="Rx Tón [Hz]" />
+			<Control Id="lblRxSignaling" Text="Rx Signalizační systém" />
+			<Control Id="lblUnmuteRule" Text="Unmute Rule" />
+			<Control Id="lblArtsInterval" Text="Interval ARTS [s]" />
+			<Control Id="lblArts" Text="ARTS" />
+			<Control Id="lblPttidType" Text="Typ PTTID" />
+			<Control Id="lblTxSignaling" Text="Tx Signalizační systém" />
+			<Control Id="lblTxTone" Text="Tx Tón [Hz]" />
+			<Control Id="chkDataPl" Text="PL pro Data" />
+			<Control Id="chkLoneWoker" Text="Lone Work" />
+      <Control Id="chkOpenGD77ScanAllSkip" Text="Scan: Přeskočit vše" />
+			<Control Id="chkVox" Text="Vox" />
+			<Control Id="chkAutoScan" Text="Auto Scan" />
+      <Control Id="chkOpenGD77ScanZoneSkip" Text="Scan: Přeskočit zónu" />
+			<Control Id="lblChName" Text="Jméno" />
+			<Control Id="lblChMode" Text="Režim" />
+			<Control Id="lblTot" Text="TOT [s]" />
+			<Control Id="lblTotRekey" Text="TOT Rekey prodleva [s]" />
+			<Control Id="lblRssiThreshold" Text="RSSI práh [dBm]" />
+			<Control Id="lblRxRefFreq" Text="Rx referenční frekvence" />
+			<Control Id="lblTxRefFreq" Text="Tx referenční frekvence" />
+			<Control Id="lblRxFreq" Text="Rx Frek [MHz]" />
+			<Control Id="lblPower" Text="Výkon" />
+			<Control Id="lblAdmitCriteria" Text="Admit Criteria" />
+			<Control Id="lblTxFreq" Text="Tx Frek [MHz]" />
+			<Control Id="lblScanList" Text="Scan List" />
+			<Control Id="lblOffsetStep" Text="Offset Step" />
+			<Control Id="lblOffsetDirection" Text="Směr offsetu" />
+			<Control Id="lblOffsetFreq" Text="Offset Frek" />
+		</Controls>
+		<Commons>
+			<Item Id="ChMode" Text="Analog,Digitál" />
+			<Item Id="RefFreq" Text="Nízká,Střední,Vysoká" />
+			<Item Id="Power" Text="Nízký,Vysoký" />
+			<Item Id="AdmitCriterica" Text="Vždy,S volným kanálem,CTCSS/DCS" />
+			<Item Id="AdmitCritericaD" Text="Vždy,S volným kanálem,Se stejným color code" />
+			<Item Id="Squelch" Text="Přísný,Standardní" />
+			<Item Id="VoiceEmphasis" Text="Vypnuto,Před a po,Po,Před" />
+			<Item Id="Ste" Text="Od frekvence,120°,180°,240°" />
+			<Item Id="NonSte" Text="Vypnuto,Od frekvence" />
+			<Item Id="SignalingSystem" Text="Vypnuto,DTMF" />
+			<Item Id="UnmuteRule" Text="Běžný Unmute Mute,A Unmute Mute,A Unmute nebo Mute" />
+			<Item Id="PttidType" Text="Vypnuto,Před,Po,Před i po" />
+			<Item Id="Arts" Text="Vypnuto,Tx,Rx,Tx a Rx" />
+			<Item Id="TimingPreference" Text="Preferovaný,Eligible,Ineligible" />
+			<Item Id="Ars" Text="Vypnuto,System Change" />
+			<Item Id="KeySwitch" Text="Vyp,Zap" />
+			<Item Id="" Text="Žádný,+,-" />
+		</Commons>
+	</VfoForm>
+	<ZoneBasicForm Text="Zone Basic">
+		<Controls>
+			<Control Id="grpSub" Text="Dolů" />
+			<Control Id="lblSubCh" Text="Kanál" />
+			<Control Id="lblSubZone" Text="Zóna" />
+			<Control Id="grpMain" Text="Nahoru" />
+			<Control Id="lblMainCh" Text="Kanál" />
+			<Control Id="lblCurZone" Text="Zóna" />
+		</Controls>
+	</ZoneBasicForm>
+	<ZoneForm Text="Zone">
+		<Controls>
+			<Control Id="tsrZone" Text="toolStrip1">
+				<ToolStripItem Id="tslblInfo" Text="" />
+				<ToolStripItem Id="tsbtnFirst" Text="První" />
+				<ToolStripItem Id="tsbtnPrev" Text="Předchozí" />
+				<ToolStripItem Id="tsbtnNext" Text="Další" />
+				<ToolStripItem Id="tsbtnLast" Text="Poslední" />
+				<ToolStripItem Id="tsbtnAdd" Text="Přidat" />
+				<ToolStripItem Id="tsbtnDel" Text="Vymazat" />
+			</Control>
+			<Control Id="btnDown" Text="Dolů" />
+			<Control Id="btnUp" Text="Nahoru" />
+			<Control Id="grpSelected" Text="Člen" />
+			<Control Id="btnAdd" Text="Přidat" />
+			<Control Id="grpUnselected" Text="K dispozici" />
+			<Control Id="btnDel" Text="Vymazat" />
+			<Control Id="lblName" Text="Jméno" />
+		</Controls>
+	</ZoneForm>
+  <DownloadContactsForm Text="Download contacts'">
+    <Controls>
+      <Control Id="lblMessage" Text="Zvolte kód ID prefixu pro váš region a stiskněte Download..." /> 
+      <Control Id="btnImport" Text="Importovat vybrané" />
+      <Control Id="btnSelectAll" Text="Označit vše" />      
+      <Control Id="btnDownload" Text="Stáhnout z URL" />
+      <Control Id="btnDownloadDMRMARC" Text="Stáhnout z DRM MARC" />      
+      <Control Id="lblIDStart" Text="Regionální Prefix code" />
+      <Control Id="lblMessageDownloading" Text="Stahuji" />
+      <Control Id="dgvDownloadeContacts" Text="ID,Callsign,Name,Last heard">
+        <ControlItem Id="" Text="ID." />
+        <ControlItem Id="" Text="Callsign" />
+        <ControlItem Id="" Text="Name" />
+        <ControlItem Id="" Text="Last heard" />
+      </Control>      
+    </Controls>
+  </DownloadContactsForm>
+  <CalibrationForm Text="Calibration viewer'">
+    <Controls>
+      <Control Id="btnSave" Text="Save" />
+      <Control Id="btnCancel" Text="Cancel" />
+        <Control Id="tabCtlBands" Text="" >
+          <ControlItem Id="tabVHF" Text="VHF">
+            <Control Id="calibrationBandControlVHF" Text="" >
+              <ControlItem Id="calibrationPowerControlHigh" Text="Vysoký výkon"/>
+              <ControlItem Id="calibrationPowerControlLow" Text=""/>
+              <ControlItem Id="calibrationTXIandQ" Text=""/>
+              <ControlItem Id=" grpAnalogTxDeviation" Text=""/>
+              <ControlItem Id="lblDTMF" Text=""/>
+              <ControlItem Id="lblToneBurst" Text=""/>
+              <ControlItem Id="lblAnalogTxDeviationWide" Text=""/>
+              <ControlItem Id="lblAnalogTxDeviationNarrow" Text=""/>
+              <ControlItem Id="lblOverallGain" Text=""/>
+              <ControlItem Id="grpSquelch" Text=""/>
+              <ControlItem Id="lblSquelchOpenNormal" Text=""/>
+              <ControlItem Id="lblSquelchCloseNormal" Text=""/>
+              <ControlItem Id="lblSquelchOpenTight" Text=""/>
+              <ControlItem Id="lblSquelchCloseTight" Text=""/>
+              <ControlItem Id="lblSquelchWide" Text=""/>
+              <ControlItem Id="lblSquelchNarrow" Text=""/>
+              <ControlItem Id="grpDigitalGain" Text=""/>
+              <ControlItem Id="lblDigitalGainRx" Text=""/>
+              <ControlItem Id="lblDigitalGainTx" Text=""/>
+              <ControlItem Id="lblDigitalGainWide" Text=""/>
+              <ControlItem Id="lblDigitalGainNarrow" Text=""/>
+              <ControlItem Id="grpAnalogGain" Text=""/>
+              <ControlItem Id="lblAnalogAudioGainRx" Text=""/>
+              <ControlItem Id="lblAnalogAudioGainWide" Text=""/>
+              <ControlItem Id="lblAnalogAudioGainNarrow" Text=""/>
+
+              <ControlItem Id="grpSMeter" Text=""/>
+              <ControlItem Id="lblSMeterLowEnd" Text=""/>
+              <ControlItem Id="lblSMeterHighEnd" Text=""/>
+
+              <ControlItem Id="lblReferenceOscTuning" Text=""/>
+              <ControlItem Id="lblReceiveAGCTarget" Text=""/>
+              <ControlItem Id="lblAnalogMicGain" Text=""/>
+            </Control>
+            <ControlItem Id="tabUHF" Text="UHF"/>
+          <Control Id="calibrationBandControlUHF" Text="" >
+            <ControlItem Id="calibrationPowerControlHigh" Text="Vysoký výkon"/>
+            <ControlItem Id="calibrationPowerControlLow" Text=""/>
+            <ControlItem Id="calibrationTXIandQ" Text=""/>
+            <ControlItem Id=" grpAnalogTxDeviation" Text=""/>
+            <ControlItem Id="lblDTMF" Text=""/>
+            <ControlItem Id="lblToneBurst" Text=""/>
+            <ControlItem Id="lblAnalogTxDeviationWide" Text=""/>
+            <ControlItem Id="lblAnalogTxDeviationNarrow" Text=""/>
+            <ControlItem Id="lblOverallGain" Text=""/>
+            <ControlItem Id="grpSquelch" Text=""/>
+            <ControlItem Id="lblSquelchOpenNormal" Text=""/>
+            <ControlItem Id="lblSquelchCloseNormal" Text=""/>
+            <ControlItem Id="lblSquelchOpenTight" Text=""/>
+            <ControlItem Id="lblSquelchCloseTight" Text=""/>
+            <ControlItem Id="lblSquelchWide" Text=""/>
+            <ControlItem Id="lblSquelchNarrow" Text=""/>
+            <ControlItem Id="grpDigitalGain" Text=""/>
+            <ControlItem Id="lblDigitalGainRx" Text=""/>
+            <ControlItem Id="lblDigitalGainTx" Text=""/>
+            <ControlItem Id="lblDigitalGainWide" Text=""/>
+            <ControlItem Id="lblDigitalGainNarrow" Text=""/>
+            <ControlItem Id="grpAnalogGain" Text=""/>
+            <ControlItem Id="lblAnalogAudioGainRx" Text=""/>
+            <ControlItem Id="lblAnalogAudioGainWide" Text=""/>
+            <ControlItem Id="lblAnalogAudioGainNarrow" Text=""/>
+            <ControlItem Id="grpSMeter" Text=""/>
+            <ControlItem Id="lblSMeterLowEnd" Text=""/>
+            <ControlItem Id="lblSMeterHighEnd" Text=""/>
+            <ControlItem Id="lblReferenceOscTuning" Text=""/>
+            <ControlItem Id="lblReceiveAGCTarget" Text=""/>
+            <ControlItem Id="lblAnalogMicGain" Text=""/>
+            </Control>
+        </ControlItem>
+      </Control>
+      <Control Id="lblMessageDownloading" Text="Stahuji" />
+    </Controls>
+  </CalibrationForm>
+  <DMRIDForm Text="DMR ID">
+    <Controls>
+      <Control Id="lblMessage" Text="Zvolte kód ID prefixu pro váš region a stiskněte Download pro přidání do seznamu" />
+      <Control Id="lblRegionId" Text="Region" />
+      <Control Id="lblInactivityFilter" Text="Filtr neaktivity (dny)" />      
+      <Control Id="btnDownload" Text="Stáhnout z HamDigital - filtrováno dle regionu a aktivity" /> 
+      <Control Id="btnImportCSV" Text="Importovat CSV - filtrováno dle region kódu" />
+      <Control Id="btnRead" Text="Načíst z GD-77" />
+      <Control Id="btnWrite" Text="Zapsat do GD-77" />
+      <Control Id="btnClear" Text="Vyčistit" />      
+    </Controls>
+  </DMRIDForm>
+  <OpenGD77Form Text="OpenGD77 Support">
+    <Controls>
+      <Control Id="btnBackupEEPROM" Text="Backup EEPROM" />
+      <Control Id="btnBackupFlash" Text="Backup Flash" />
+      <Control Id="btnRestoreEEPROM" Text="Restore EEPROM" />
+      <Control Id="btnRestoreFlash" Text="Restore Flash" />
+      <Control Id="btnReadCodeplug" Text="Read codeplug" />
+      <Control Id="btnWriteCodeplug" Text="Write codeplug" />
+      <Control Id="btnBackupCalibration" Text="Backup Calibration" />
+      <Control Id="btnRestoreCalibration" Text="Restore Calibration" />
+      <Control Id="btnBackupMCUROM" Text="Backup MCU ROM" />
+      <Control Id="btnDownloadScreenGrab" Text="Download screengrab" />
+      <Control Id="btnOpenFile" Text="Select boot image" />
+      <Control Id="txtBootTune" Text="38,6,0,2,38,2,0,2,38,6,0,2,38,2,0,2,38,6" />
+      <Control Id="grpFunThings" Text="Fun things" />
+      <Control Id="btnPlayTune" Text="Play tune" />
+      <Control Id="lblBootTune" Text="Boot melody" />
+      <Control Id="btnWriteVoicePrompts" Text="Write voice prompts" />
+    </Controls>
+           <Commons>
+        <Item Id="Error_connecting_to_the_radio" Text="Error connecting to the radio" />
+        <Item Id="Comm_port_not_available" Text="Comm port not available" />
+        <Item Id="Writing_EEPROM" Text="Writing EEPROM" />
+        <Item Id="Error_while_writing" Text="Error while writing" />
+        <Item Id="Writing_Flash" Text="Writing Flash" />
+        <Item Id="Codeplug_write_complete" Text="Codeplug write complete" />
+        <Item Id="Reading_MCU_ROM" Text="Reading MCU ROM" />
+        <Item Id="Error_while_reading_MCU_ROM" Text="Error while reading MCU ROM" />
+        <Item Id="Downloading_Screengrab" Text="Downloading Screengrab" />
+        <Item Id="Writing_Voice_prompts" Text="Writing voice prompts" />
+        <Item Id="Upload_complete" Text="Upload complete" />
+        <Item Id="No_com_port" Text="No com port. Close and reopen the OpenGD77 window to select a com port Are you sure you want to restore the EEPROM from a previously saved file?" />
+        <Item Id="Warning" Text="Warning" />
+        <Item Id="The_file_is_not_the_correct_size." Text="The file is not the correct size." />
+        <Item Id="Are_you_sure_you_want_to_restore_the_Calibartion_from_a_previously_saved_file" Text="Are you sure you want to restore the Calibartion from a previously saved file?" />
+        <Item Id="Calibration_files" Text="Calibration files" />
+        <Item Id="Invalid_Calibration_data" Text="Invalid Calibration data" />
+        <Item Id="Are_you_sure_you_want_to_restore_the_Flash_memory_from_a_previously_saved_file" Text="Are you sure you want to restore the Flash memory from a previously saved file?" />
+        <Item Id="Flash_backup_files" Text="Flash backup files" />
+        <Item Id="This_file_is_not_a_full_backup" Text="This file is not a full backup \n Do you want restore the contents of this file?" />
+        <Item Id="Please_connect_the_radio,_and_try_again." Text="Please connect the radio, and try again" />
+        <Item Id="Failed_to_open_comm_port" Text="Failed to open comm port" />
+        <Item Id="Voice_prompt_files" Text="Voice prompt files" />
+        <Item Id="read_stopped" Text="Error. Read stopped (error at {0:X8})" />
+        <Item Id="write_stopped" Text="Error. Write stopped (error at {0:X8})" />
+        <Item Id="AMB_files" Text="AMB files" />
+        <Item Id="Oops" Text="Oops" />
+        <Item Id="RADIO_DISPLAY_CPS" Text="CPS" />
+        <Item Id="RADIO_DISPLAY_Backup" Text="Backup" />
+        <Item Id="RADIO_DISPLAY_Calibration" Text="Calibration" />
+        <Item Id="RADIO_DISPLAY_EEPROM" Text="EEPROM" />
+        <Item Id="RADIO_DISPLAY_Flash" Text="Flash" />
+        <Item Id="RADIO_DISPLAY_Codeplug" Text="Codeplug" />
+        <Item Id="RADIO_DISPLAY_MCU_ROM" Text="MCU ROM" />
+        <Item Id="RADIO_DISPLAY_Voice_prompts" Text="Voice prompts" />
+        <Item Id="RADIO_DISPLAY_Restoring" Text="Restoring" />
+        <Item Id="RADIO_DISPLAY_Reading" Text="Reading" />
+        <Item Id="RADIO_DISPLAY_Writing" Text="Writing" />
+        <Item Id="Reading_EEPROM" Text="Reading EEPROM" />
+        <Item Id="Reading_Flash" Text="Reading Flash" />
+        <Item Id="Writing_EEPROM" Text="Writing EEPROM" />
+        <Item Id="Writing_Flash" Text="Writing Flash" />
+        <Item Id="Error" Text="Error" />
+        <Item Id="Warning" Text="Warning" />
+		<Item Id="Calibration_data_could_not_be_found._Please_update_your_firmware" Text="Calibration data could not be found. Please update your firmware" />
+		<Item Id="There_has_been_an_error._Refer_to_the_last_status_message_that_was_displayed" Text="There has been an error. Refer to the last status message that was displayed" />
+        <Item Id="EEPROM_files" Text="EEPROM files" />
+        <Item Id="Flash_files" Text="Flash files" />
+        <Item Id="Restore_complete" Text="Restore complete" />
+        <Item Id="Read_Codeplug_complete" Text="Read Codeplug complete" />
+        <Item Id="Screengrab_files" Text="Screengrab files" />
+        <Item Id="Error_while_reading_flash" Text="Error while reading Flash" />
+        <Item Id="Reading_Calibration" Text="Reading Calibration" />
+        <Item Id="Error_while_reading_calibration" Text="Error while reading calibration" />
+        <Item Id="Error_while_reading_EEPROM" Text="Error while reading EEPROM" />
+        <Item Id="Restoring_Flash" Text="Restoring Flash" />
+        <Item Id="Error_while_restoring" Text="Error while restoring" />
+        <Item Id="Restoring_Calibration" Text="Restoring Calibration" />
+        <Item Id="Error_while_restoring_Calibration" Text="Error while restoring Calibration" />
+        <Item Id="Restoring_EEPROM" Text="Restoring EEPROM" />
+        <Item Id="Error_while_reading" Text="Error while reading" />
+        <Item Id="Codeplug_read_complete" Text="Codeplug read complete" />
+        <Item Id="Reading_MCU_ROM" Text="Reading MCU ROM" />
+        <Item Id="Error_while_Reading_MCU_ROM" Text="Error while Reading MCU ROM" />
+        <Item Id="Error_while_downloading_Screengrab" Text="Error while downloading Screengrab" />
+        <Item Id="Are_you_sure_you_want_to_restore_the_EEPROM_from_a_previously_saved_file" Text="Are you sure you want to restore the EEPROM from a previously saved file?" />
+        <Item Id="PNG_image_files" Text="PNG image files" />
+        <Item Id="MCU_ROM_files" Text="MCU ROM files" />
+      </Commons>     
+	  
+  </OpenGD77Form>
+  <FirmwareLoaderUI Text="Firmware Loader">
+    <Controls>
+		<Control Id="btnDetectModel" Text="Detect Radio Type" />
+		<Control Id="grpboxProgress" Text="  Progress " />
+		<Control Id="btnClose"		Text="&amp;Close" />
+		<Control Id="btnDownloadFirmware" Text="&amp;Download &amp;&amp; Update" />
+		<Control Id="btnUploadFirmware" Text="Select a &amp;File &amp;&amp; Update" />
+		<Control Id="grpboxModel" Text="Select your radio type " />
+      </Controls>
+    <Commons>
+      <Item Id="CantInterrupt" Text="You can't interrupt the upload process" />
+      <Item Id="DownloadCancelled" Text="Download has been canceled." />
+      <Item Id="Timeout" Text="Timeout" />
+      <Item Id="Error" Text="Error" />
+      <Item Id="No_file_location_specified" Text="No file location specified" />
+      <Item Id="Error:_Unable_to_detect_your_radio." Text="Error: Unable to detect your radio." />
+      <Item Id="Uploading_firmware_to" Text="Uploading firmware to " />
+      <Item Id="Error_sending_data" Text="Error sending data" />
+      <Item Id="Error_sending_checksum" Text="Error sending checksum" />
+      <Item Id="Sending_Download_command" Text="Sending Download command" />
+      <Item Id="Sending_ACK" Text="Sending ACK" />
+      <Item Id="Sending_encryption_key" Text="Sending encryption key" />
+      <Item Id="Sending_F-PROG_command" Text="Sending F-PROG command" />
+      <Item Id="Sending_radio_modem_number" Text="Sending radio modem number" />
+      <Item Id="Sending_radio_modem_number_2" Text="Sending radio modem number 2" />
+      <Item Id="Sending_version" Text="Sending version" />
+      <Item Id="Sending_erase_command" Text="Sending erase command" />
+      <Item Id="Send_post_erase_command" Text="Send post erase command" />
+      <Item Id="Sending_Program_command" Text="Sending Program command" />
+      <Item Id="Error_sending_command" Text="Error sending command "/>
+      <Item Id="ERROR:_SGL!_header_missing." Text="ERROR: SGL! header missing." />
+      <Item Id="Stable" Text="Stable" />
+	  <Item Id="Beta" Text="Beta" />
+      <Item Id="Error._Cant_connect_to_the" Text="Error. Can't connect to the" />
+      <Item Id="Error._Missing_SGL!_in_.sgl_file_header" Text="Error. Missing SGL! in .sgl file header" />
+      <Item Id="Error._The_firmware_doesnt_match the_transceiver_model." Text="Error. The firmware doesn't match the transceiver model." />
+      <Item Id="Firmware_file_is_unencrypted_binary" Text="Firmware file is unencrypted binary" />
+      <Item Id="Error._Firmware_file_too_large" Text="Error. Firmware file too large." />
+      <Item Id="Firmware_update_complete" Text="Firmware update complete. Please reboot the radio" />
+      <Item Id="While_sending_data_file" Text="While sending data file" />
+      <Item Id="Error_while_sending_initial_commands._Is_the_{0}_in_firmware_update_mode?" Text="Error while sending initial commands. Is the {0} in firmware update mode?" />
+      <Item Id="Error_read_returned" Text="Error read returned " />
+      <Item Id="Firmware_file_confirmed_as_SGL" Text="Firmware file confirmed as SGL" />
+      <Item Id="Success" Text="Success" />
+    </Commons>
+    </FirmwareLoaderUI>
+	  <FirmwareLoaderReleasesList Text="Select release version">
+    <Controls>
+      <Control Id="btnDetectModel" Text="Detect Radio Type" />
+      <Control Id="releasesGridView" Text="Date &amp; Time,Version,Type,Release Name,Downloads"/>
+      <Control Id="btnDown" Text=" Select &amp;&amp; continue"/>
+      <Control Id="btnCancel" Text=" Cancel"/>
+    </Controls>
+  </FirmwareLoaderReleasesList>
+	<Commons>
+		<Item Id="None" Text="Žádný" />
+		<Item Id="Selected" Text="Vybraný" />
+		<Item Id="RadioIdNotEmpty" Text="Radio ID nemůže být prázdné" /> 
+		<Item Id="RadioIdOutOfRange" Text="Radio ID mimo rozsah" />
+		<Item Id="Read" Text="Načíst" />
+		<Item Id="Write" Text="Zapsat" />
+		<Item Id="ReadComplete" Text="Čtení dokončeno" />
+		<Item Id="WriteComplete" Text="Zápis dokončen" />
+		<Item Id="NameExist" Text="Jméno již existuje" />
+		<Item Id="FirstChNotDelete" Text="První kanál v první zóně nemůže být odstraněn" />
+		<Item Id="FileFormatError" Text="Chyba formátu souboru" />
+		<Item Id="OpenSuccessfully" Text="Úspěšně otevřeno" />
+		<Item Id="SaveSuccessfully" Text="Úspěšně uloženo" />
+		<Item Id="TypeNotMatch" Text="Typ se neshoduje" />
+		<Item Id="NotSelectItemNotCopyItem" Text="Not select item or Not copyitem" />
+		<Item Id="KeyPressHex" Text="Please input : " />
+		<Item Id="KeyPressDigit" Text="Please input : Digit and {0}" />
+		<Item Id="KeyPressPrint" Text="Please input print" />
+		<Item Id="DeviceNotFound" Text="Zařízení nenalezeno" />
+		<Item Id="ModelNotMatch" Text="Neshoda modelu" />
+		<Item Id="PromptKey1" Text="Chcete uložit codeplug před ukončením?" />
+		<Item Id="PromptKey2" Text="Chcete načíst nový codeplug se základním nastavením? Veškerá data budou nahrazena." />
+		<Item Id="DataFormatError" Text="Chyba formátu dat" />
+		<Item Id="FirstNotDelete" Text="První řádek nemůže být odstraněn" />
+		<Item Id="OpenPortFail" Text="Nepodařilo se otevřít sériový port" />
+		<Item Id="CommError" Text="Chyba komunikace" />
+		<Item Id="Add" Text="Přidat: " />
+		<Item Id="ScanSelected" Text="Nelze operovat s vybranými" />
+		<Item Id="codePlugReadConfirm"  Text="Načítám codeplug z GD77, tím se přepíše ten současný. Pokračovat?" />
+		<Item Id="codePlugWriteConfirm"  Text="Zapisuji codeplug do GD77, tím pádem se přepíše ten, co je nahraný. Pokračovat? " />
+		<Item Id="pleaseConfirm"  Text="Prosím potvrďte" />
+    <Item Id="userAgreement"  Text="Tento program je poskytován bez jakýchkoli záruk (as is). Používáte jej pouze na vlastní rizoto vašeho PC i rádia. Kliknutím na Ano s tímto souhlasíte." />
+    <Item Id="DownloadContactsMessageAdded" Text="Je zde {0} nových ID které nejsou v kontaktech" /> 
+    <Item Id="DownloadContactsRegionEmpty" Text="Zadejte 3-místný region prefix, např. 505 pro Austrálii" /> 
+    <Item Id="DownloadContactsDownloading" Text="Stahuji..." />
+    <Item Id="DownloadContactsSelectContactsToImport" Text="Zvolte kontakty pro import" />
+    <Item Id="DownloadContactsTooMany" Text="Nepodařilo se naimportovat všechny kontakty jelikož maximum digitálních kontaktů bylo dosaženo" />
+    <Item Id="Warning" Text="Upozornění" />
+    <Item Id="UnableDownloadFromInternet" Text="Nelze stáhnout data, zkontrolujte připojení k internetu" />
+    <Item Id="DownloadContactsImportComplete" Text="Import dokončen" />
+    <Item Id="CodeplugUpgradeNotice" Text="Toto vypadá na codeplug z verze 3.0.6, bude převeden do verze 3.1.x" /> 
+    <Item Id="CodeplugUpgradeWarningToManyRxGroups" Text="Verze 3.1.x může mít jen 76 RX skupin, další skupiny byly ignorovány" /> 
+    <Item Id="CodeplugRead" Text="Načítám codeplug z GD-77" />
+    <Item Id="CodeplugWrite" Text="Zapisuji codeplug do GD-77" />
+    <Item Id="DMRIDRead" Text="Načítám DMR ID databázi z GD-77" />
+    <Item Id="DMRIDWrite" Text="Zapisuji DMR ID databázi do GD-77" />
+    <Item Id="CalibrationRead" Text="Načítám kalibrační data z GD-77" />
+    <Item Id="CalibrationWrite" Text="Zapisuji kalibrační data do GD-77" />
+    <Item Id="IdAlreadyExists" Text="ID / Timeslot již existuje" />
+    <Item Id="IdOutOfRange" Text="ID mimo rozsah" />
+    <Item Id="IdNotEmpty" Text="ID nemůže být prázdné" />
+    <Item Id="ContactNameDuplicate" Text="Jméno kontaktu je duplicitní." />
+    <Item Id="EnableMemoryAccessMode" Text ="Připojená GD-77 se zdá nebýt v Memory Access režimu (přístup do paměti). Zkuste to znovu, podržením tlačítka SK2 (modré na straně staničky), zeleného menu a hvězdičky před zapnutím rádia" />
+    <Item Id="dataRead" Text="Načítám data z GD-77"/>
+    <Item Id="dataWrite" Text="Zapisuji data do GD-77"/>
+    <Item Id="DMRIdContcatsTotal" Text="Celkový počet ID = {0}. Může být nahráno jen {1}" />
+    <Item Id="ErrorParsingData" Text="Chyba při zpracování dat" />
+  </Commons>
+</Resource>

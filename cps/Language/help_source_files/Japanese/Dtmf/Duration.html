@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>*# Duration</title>
+<link rel="stylesheet" href="../wcss.css" type="text/css" />
+</head>
+<body>
+<font class="Title"><strong>*# Duration</strong></font>
+<hr class = "HrColor" />このパラメータは、拡張された＃*および音声送信時間です。一部のシステムでは、これら2つのコードを数値コードより長く設定する必要があり、この機能が必要です。ただし、*または＃トーンへの起動、期間、およびインターコムの機会がコード設定される場合は、「最初のデジタル時間が比較されました。長い時間で、2つを使用しました。</font></p>
+<strong>Range</strong> <ul id="ulRange">
+<li>10～1000 ms</li>
+</ul> 
+<br />
+<strong>Sample</strong>
+<ul id="ulRange">
+<li>Sample 1：
+"DTMF rate" is set to 10 digits per second (duration is 50 milliseconds). "* And # tone" is set to 500 milliseconds. Thus, the actual length of "* and # sounds" is 550 milliseconds.
+However, if the launch starts with * and # sounds, the intercom compares the duration of the pitch with the "first digit time" and uses the longer one of the two.
+<li>Sample 2：
+"DTMF rate" is set to 10 digits per second (duration is 50 milliseconds). The first digit time is set to 100 milliseconds. "* And # tone" is set to 500 milliseconds. Therefore, the actual number of the first digit * or # is 550 milliseconds.
+</li>
+</ul>  
+</body>
+</html>

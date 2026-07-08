@@ -1,0 +1,9 @@
+*.o
+*.elf
+*.bin
+*.sgl
+*.d
+build/
+Debug_*/
+Release_*/
+*.zip
