@@ -12,18 +12,25 @@ namespace DMR
 {
 	public class EncryptForm : DockContent, IDisp
 	{
+		// ClosedGD77: extended encryption algorithm types
+		// Encrypt byte format (matches firmware encryption.h ENC_ALGO_* enum):
+		//   bits 0-4: key ID (0-31)
+		//   bits 5-7: algorithm (0=None, 1=ARC4, 2=AES-128, 3=AES-256, 4=Scrambler)
 		private enum EncryptType
 		{
 			None,
-			Basic,
-			Enhanced
+			Basic,      // ARC4 Enhanced Privacy (DMRA standard, 40-bit)
+			Enhanced,   // Reserved (was Enhanced in original firmware)
+			AES128,     // AES-128-CTR (STM32 only)
+			AES256,     // AES-256-CTR (STM32 only)
+			Scrambler   // Analog FM frequency inversion
 		}
 
 		private enum KeyLen
 		{
-			Length32,
-			Length64,
-			Length40
+			Length32,   // 32-bit (4 bytes)
+			Length64,   // 64-bit (8 bytes)
+			Length40    // 40-bit (5 bytes, ARC4 DMRA standard)
 		}
 
 		[Serializable]

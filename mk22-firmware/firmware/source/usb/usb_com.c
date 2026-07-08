@@ -25,6 +25,7 @@
 #include "interfaces/wdog.h"
 #include "hardware/HR-C6000.h"
 #include "functions/sound.h"
+#include "encryption/encryption.h"
 
 static void handleCPSRequest(void);
 
@@ -316,6 +317,24 @@ static void cpsHandleCommand(void)
 				flashingDMRIDs = false;
 			}
 			uiCPSUpdate(CPS2UI_COMMAND_END, 0, 0, FONT_SIZE_1, TEXT_ALIGN_LEFT, 0, NULL);
+			break;
+		case 7:
+			{
+				// ClosedGD77: Write encryption key from CPS -> firmware
+				// Packet: [cmd=7][key_slot][algorithm][key_len][name(16)][key_data(32)]
+				uint8_t keySlot = com_requestbuffer[2];
+				encryption_key_t newKey;
+				memset(&newKey, 0, sizeof(encryption_key_t));
+
+				newKey.key_id = keySlot;
+				newKey.algorithm = com_requestbuffer[3];
+				newKey.key_length = com_requestbuffer[4];
+				memcpy(newKey.key_name, &com_requestbuffer[5], 16);
+				newKey.key_name[15] = 0;
+				memcpy(newKey.key_data, &com_requestbuffer[21], ENC_MAX_KEY_SIZE);
+
+				encryption_key_store(keySlot, &newKey);
+			}
 			break;
 		case 6:
 			{
