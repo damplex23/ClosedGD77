@@ -1,18 +1,40 @@
+# Build outputs - C/C++ firmware
 *.o
 *.elf
 *.bin
 *.sgl
 *.d
+*.map
+*.lst
+*.su
+*.hex
 build/
 Debug_*/
 Release_*/
-*.zip
+output/
 
 # Large toolchain archives (exceed GitHub 100MB limit)
 armgcc/*.tar.xz
 armgcc/*.tar.gz
+
+# Archives
 *.zip
 
-# Large toolchain archives (exceed GitHub 100MB limit)
-armgcc/*.tar.xz
-armgcc/*.tar.gz
+# .NET / C# build outputs
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+*.userprefs
+
+# IDE state
+*.ide
+*.lock
+*.db
+
+# OS
+.DS_Store
+Thumbs.db
