@@ -167,9 +167,9 @@ internal class IniFileUtils
 	{
 		iniPath = null;
 		// for portable operation check if setup.ini is in the applications own folder
-		if (File.Exists(Application.StartupPath + "\\Setup.ini"))
+		if (File.Exists(Path.Combine(Application.StartupPath, "Setup.ini")))
 		{
-			IniFileUtils.iniPath = Application.StartupPath + "\\Setup.ini";
+			IniFileUtils.iniPath = Path.Combine(Application.StartupPath, "Setup.ini");
 			return;
 		}
 		/*

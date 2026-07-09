@@ -64,25 +64,31 @@ static const int16_t scramble_sine[SCRAMBLE_TABLE_SIZE] = {
 #define PHASE_INCREMENT  ((uint32_t)(((uint64_t)SCRAMBLE_CARRIER_HZ << 16) / SCRAMBLE_SAMPLE_RATE))
 #define PHASE_HALF_MASK  0x8000  // MSB of phase accumulator
 
-void scrambler_process(int16_t *samples, uint16_t count, uint8_t *phase_byte)
+// Simple square-wave frequency inversion using phase accumulator.
+// Multiplies audio by alternating +1/-1 at the carrier rate,
+// inverting the frequency spectrum around fc/2.
+//
+// Phase accumulator: 16-bit, increments by (fc << 16) / 8000 per sample.
+// Toggle sign when phase MSB changes.
+void scrambler_process(int16_t *samples, uint16_t count, uint16_t *phase, uint8_t scramble_id)
 {
-    // Recover 16-bit phase from the byte stored in encryption_state_t
-    static uint16_t phase = 0;
+    // Use carrier_freq_hz from scrambler.c if available, otherwise default to 3200Hz
+    // ponytail: single carrier for MK22 — flash budget too tight for 8-ID table
+    (void)scramble_id;
+    uint32_t phase_inc = ((uint32_t)SCRAMBLE_CARRIER_HZ << 16) / SCRAMBLE_SAMPLE_RATE;
+    uint16_t local_phase = *phase;
 
-    uint16_t local_phase = phase;
+    for (uint16_t n = 0; n < count; n++)
+    {
+        uint16_t prev_phase = local_phase;
+        local_phase += (uint16_t)phase_inc;
 
-    for (uint16_t n = 0; n < count; n++) {
-        local_phase += PHASE_INCREMENT;
-
-        // Toggle sign at phase crossing midpoint (half the carrier rate)
-        // This multiplies audio by alternating +1/-1 at fc rate
-        // effectively inverting the frequency spectrum around fc/2
-        if ((local_phase & 0x8000) != (phase & 0x8000)) {
+        // Toggle sign when phase MSB changes (crosses midpoint)
+        if ((local_phase & 0x8000) != (prev_phase & 0x8000))
+        {
             samples[n] = -samples[n];
         }
     }
 
-    phase = local_phase;
-    // Store phase back (truncated to 8 bits — restart on overflow, fine for scrambling)
-    *phase_byte = (uint8_t)(phase & 0xFF);
+    *phase = local_phase;
 }

@@ -34,6 +34,11 @@ using System.Text;
 using UsbLibrary;
 using System.IO;
 using System.Windows.Forms;
+#if LINUX_BUILD
+using HIDSpecifiedDevice = UsbLibrary.CrossPlatformSpecifiedDevice;
+#else
+using HIDSpecifiedDevice = UsbLibrary.SpecifiedDevice;
+#endif
 
 
 namespace DMR
@@ -44,7 +49,7 @@ namespace DMR
 
 		private static readonly int VENDOR_ID = 0x15A2;
 		private static readonly int PRODUCT_ID = 0x0073;
-		private static SpecifiedDevice _specifiedDevice = null;
+		private static HIDSpecifiedDevice _specifiedDevice = null;
 		private static FirmwareLoaderUI _progessForm;
 
 		public enum OutputType
@@ -130,7 +135,7 @@ namespace DMR
 					return -99;
 			}
 
-			_specifiedDevice = SpecifiedDevice.FindSpecifiedDevice(VENDOR_ID, PRODUCT_ID);
+			_specifiedDevice = HIDSpecifiedDevice.FindSpecifiedDevice(VENDOR_ID, PRODUCT_ID);
 			if (_specifiedDevice == null)
 			{
 				_progessForm.SetLabel(String.Format(FirmwareLoaderUI.StringsDict["Error._Cant_connect_to_the"] + " {0}", getModelName()));
@@ -398,7 +403,7 @@ namespace DMR
 			int commandNumber = 0;
 			byte[] resp;
 
-			_specifiedDevice = SpecifiedDevice.FindSpecifiedDevice(VENDOR_ID, PRODUCT_ID);
+			_specifiedDevice = HIDSpecifiedDevice.FindSpecifiedDevice(VENDOR_ID, PRODUCT_ID);
 
 			if (_specifiedDevice == null)
 			{

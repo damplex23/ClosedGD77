@@ -23,7 +23,7 @@ void aes_ctr_decrypt_frame(uint8_t *data, uint8_t len);
 #endif
 
 // Analog scrambler
-void scrambler_process(int16_t *samples, uint16_t count, uint8_t *phase);
+void scrambler_process(int16_t *samples, uint16_t count, uint16_t *phase, uint8_t scramble_id);
 
 // ---- Global encryption state ----
 static encryption_state_t enc_state;
@@ -55,6 +55,7 @@ void encryption_init(void)
 
     memset(&enc_state, 0, sizeof(enc_state));
     memset(enc_keys, 0, sizeof(enc_keys));
+    enc_state.global_mode_override = 0xFF; // default: use codeplug, no menu override
     enc_key_count = 0;
 
     // Initialize with default empty key (slot 0, key_id 0, algorithm NONE)
@@ -103,6 +104,73 @@ void encryption_set_algorithm(uint8_t algo)
 void encryption_set_analog_scramble(bool enabled)
 {
     enc_state.analog_scramble_enabled = enabled;
+    if (!enabled)
+    {
+        enc_state.scramble_id = 0;
+    }
+}
+
+void encryption_set_scramble_id(uint8_t id)
+{
+    if (id > 8)
+    {
+        id = 0;
+    }
+    enc_state.scramble_id = id;
+    enc_state.analog_scramble_enabled = (id > 0);
+    enc_state.scramble_carrier_phase = 0; // reset phase on ID change
+}
+
+uint8_t encryption_get_scramble_id(void)
+{
+    return enc_state.scramble_id;
+}
+
+// ---- Global mode override (radio menu) ----
+
+void encryption_set_global_mode(uint8_t mode)
+{
+    if (mode == 0xFF)
+    {
+        enc_state.global_mode_override = 0xFF;
+        return;
+    }
+
+    enc_state.global_mode_override = mode;
+
+    if (mode == 0) // Off
+    {
+        enc_state.enabled = false;
+        enc_state.analog_scramble_enabled = false;
+        enc_state.scramble_id = 0;
+        return;
+    }
+
+    if (mode == ENC_ALGO_SCRAMBLER) // 4 = Scrambler
+    {
+        enc_state.enabled = false;
+        enc_state.active_algorithm = ENC_ALGO_SCRAMBLER;
+        if (enc_state.scramble_id == 0)
+        {
+            enc_state.scramble_id = 4;  // default 3.2kHz
+        }
+        enc_state.analog_scramble_enabled = true;
+        enc_state.scramble_carrier_phase = 0;
+        return;
+    }
+
+    // DMR modes: ARC4
+    enc_state.enabled = true;
+    enc_state.active_algorithm = mode;
+    enc_state.analog_scramble_enabled = false;
+    enc_state.scramble_id = 0;
+    enc_state.rx_keystream_ready = false;
+    enc_state.tx_keystream_ready = false;
+}
+
+uint8_t encryption_get_global_mode(void)
+{
+    return enc_state.global_mode_override;
 }
 
 bool encryption_is_enabled(void)
@@ -120,6 +188,13 @@ const encryption_state_t* encryption_get_state(void)
 // Apply encryption settings from channel codeplug data
 void encryption_apply_channel_settings(uint8_t encrypt_field)
 {
+    // Global menu override takes precedence
+    if (enc_state.global_mode_override != 0xFF)
+    {
+        encryption_set_global_mode(enc_state.global_mode_override);
+        return;
+    }
+
     if (encrypt_field == 0 || encrypt_field == ENC_ALGO_NONE)
     {
         enc_state.enabled = false;
@@ -233,7 +308,9 @@ void encryption_decrypt_voice_frame(uint8_t *data, uint8_t len)
 void encryption_scramble_audio(int16_t *samples, uint16_t count)
 {
     if (!enc_state.analog_scramble_enabled) return;
-    scrambler_process(samples, count, &enc_state.scramble_carrier_phase);
+    // ponytail: default ID 4 = 3.2kHz if not set
+    uint8_t id = enc_state.scramble_id ? enc_state.scramble_id : 4;
+    scrambler_process(samples, count, &enc_state.scramble_carrier_phase, id);
 }
 
 // ---- IV management ----

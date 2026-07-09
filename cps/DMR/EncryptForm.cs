@@ -7,6 +7,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using UsbLibrary;
+#if LINUX_BUILD
+using HIDSpecifiedDevice = UsbLibrary.CrossPlatformSpecifiedDevice;
+#else
+using HIDSpecifiedDevice = UsbLibrary.SpecifiedDevice;
+#endif
 
 namespace DMR
 {
@@ -15,22 +21,44 @@ namespace DMR
 		// ClosedGD77: extended encryption algorithm types
 		// Encrypt byte format (matches firmware encryption.h ENC_ALGO_* enum):
 		//   bits 0-4: key ID (0-31)
-		//   bits 5-7: algorithm (0=None, 1=ARC4, 2=AES-128, 3=AES-256, 4=Scrambler)
-		private enum EncryptType
-		{
-			None,
-			Basic,      // ARC4 Enhanced Privacy (DMRA standard, 40-bit)
-			Enhanced,   // Reserved (was Enhanced in original firmware)
-			AES128,     // AES-128-CTR (STM32 only)
-			AES256,     // AES-256-CTR (STM32 only)
-			Scrambler   // Analog FM frequency inversion
-		}
+		//   bits 5-7: algorithm (0=None, 1=ARC4, 2=AES-128)
+		//
+		// Key transfer USB command packet:
+		//   ['C'][cmd=N][key_slot][algorithm][key_len][name(16)][key_data(32)]  (53 bytes)
+		//   MK22 (GD-77, DM-1801, RD-5R): command 7
+		//   STM32 (DM-1701, UV380, RT-3S):  command 8 (command 7 is GPS on STM32)
+		// ClosedGD77: Scrambler removed from codeplug — it's a radio-side menu toggle.
+	// AES-256 removed to fit legacy Encrypt.keyList (8 bytes/key max).
+	private enum EncryptType
+	{
+		None   = 0,
+		ARC4   = 1,  // ARC4 Enhanced Privacy (DMRA standard, 40-bit)
+		AES128 = 2   // AES-128-CTR (STM32 only)
+	}
 
 		private enum KeyLen
+	{
+		Length32,   // 32-bit (4 bytes, ARC4 basic)
+		Length64,   // 64-bit (8 bytes, ARC4 extended)
+		Length40,   // 40-bit (5 bytes, ARC4 DMRA standard)
+		Length128   // 128-bit (16 bytes, AES-128)
+	}
+
+		// ClosedGD77: Encryption key store for WriteKeysToRadio
+		public static EncryptionKeyStore KeyStore = new EncryptionKeyStore();
+
+		// Radio model detection for command byte selection
+		// MK22 models: GD-77 (MD-760/P), DM-1801 (MD-2017), RD-5R
+		// STM32 models: DM-1701 (MD-UV380), RT-3S (MD-9600)
+		private static bool IsSTM32Model()
 		{
-			Length32,   // 32-bit (4 bytes)
-			Length64,   // 64-bit (8 bytes)
-			Length40    // 40-bit (5 bytes, ARC4 DMRA standard)
+			string model = System.Text.Encoding.ASCII.GetString(Settings.CUR_MODEL).Trim('\0', '\xFF', ' ');
+			return model.Contains("UV380") || model.Contains("9600") || model.Contains("1701");
+		}
+
+		private static byte GetKeyTransferCommand()
+		{
+			return (byte)(IsSTM32Model() ? 8 : 7);
 		}
 
 		[Serializable]
@@ -287,6 +315,8 @@ namespace DMR
 
 		private const int LEN_KEY_64BIT = 16;
 
+		private const int LEN_KEY_128BIT = 32;
+
 		public const string SZ_ENCRYPT_TYPE_NAME = "EncryptType";
 
 		private const string DEF_KEY = "53474C3953474C39";
@@ -314,6 +344,8 @@ namespace DMR
 		private Button btnDel;
 
 		private Button btnAdd;
+
+		private Button btnWriteRadio;  // ClosedGD77: Write keys to radio
 
 		private DataGridViewTextBoxColumn txtKey;
 
@@ -362,15 +394,24 @@ namespace DMR
 				text = this.dgvKey.Rows[i].Cells[0].Value.ToString();
 				EncryptForm.data.SetKey(num, text);
 			}
+			SyncToKeyStore();
+			SaveKeyStoreToFile();
 		}
 
 		public void DispData()
 		{
 			int num = 0;
 			int num2 = 0;
-			this.cmbType.SelectedIndex = EncryptForm.data.Type;
-			this.cmbKeyLen.SelectedIndex = EncryptForm.data.KeyLen;
-			num2 = ((this.cmbKeyLen.SelectedIndex != 1) ? 8 : 16);
+			// Clamp to current enum range — old codeplugs may have Type=3 (AES-256) or Type=4 (Scrambler)
+			int typeVal = EncryptForm.data.Type;
+			if (typeVal < 0 || typeVal >= this.cmbType.Items.Count) typeVal = 0;
+			this.cmbType.SelectedIndex = typeVal;
+			int keyLenVal = EncryptForm.data.KeyLen;
+			if (keyLenVal < 0 || keyLenVal >= this.cmbKeyLen.Items.Count) keyLenVal = 0;
+			this.cmbKeyLen.SelectedIndex = keyLenVal;
+			// Key length hex char counts: 32-bit=8, 64-bit=16, 40-bit=10, 128-bit=32
+			int[] hexLenMap = { 8, 16, 10, 32 };
+			num2 = (this.cmbKeyLen.SelectedIndex < hexLenMap.Length) ? hexLenMap[this.cmbKeyLen.SelectedIndex] : 8;
 			this.txtKey.MaxInputLength = num2;
 			this.dgvKey.Rows.Clear();
 			for (num = 0; num < 16; num++)
@@ -379,7 +420,7 @@ namespace DMR
 				{
 					int index = this.dgvKey.Rows.Add();
 					this.dgvKey.Rows[index].Tag = num;
-					this.dgvKey.Rows[index].Cells[0].Value = EncryptForm.data.GetKey(num).Substring(0, num2);
+					this.dgvKey.Rows[index].Cells[0].Value = EncryptForm.data.GetKey(num).Substring(0, Math.Min(num2, EncryptForm.data.GetKey(num).Length));
 				}
 			}
 			this.method_3();
@@ -405,7 +446,7 @@ namespace DMR
 		private void method_2()
 		{
 			DataGridViewTextBoxColumn dataGridViewTextBoxColumn = this.dgvKey.Columns[0] as DataGridViewTextBoxColumn;
-			dataGridViewTextBoxColumn.MaxInputLength = 8;
+			dataGridViewTextBoxColumn.MaxInputLength = 64; // up to 256-bit keys
 			dataGridViewTextBoxColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 			dataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 			Settings.smethod_37(this.cmbType, EncryptForm.SZ_ENCRYPT_TYPE);
@@ -425,6 +466,7 @@ namespace DMR
 				Settings.UpdateComponentTextsFromLanguageXmlData(this);
 				this.method_2();
 				this.DispData();
+				LoadKeyStoreFromFile();
 			}
 			catch (Exception ex)
 			{
@@ -455,7 +497,13 @@ namespace DMR
 			}
 			this.dgvKey.Rows.Insert(num, 1);
 			this.dgvKey.Rows[num].Tag = num2;
-			text = ((this.cmbKeyLen.SelectedIndex != 0) ? "53474C3953474C39" : "53474C3953474C39".Substring(8));
+			// Generate default key for selected key length
+			int[] hexLenMap = { 8, 16, 10, 32 };
+			int hexLen = (this.cmbKeyLen.SelectedIndex < hexLenMap.Length) ? hexLenMap[this.cmbKeyLen.SelectedIndex] : 16;
+			string baseKey = "53474C3953474C39"; // "SGL9SGL9" = 16 hex chars
+			while (baseKey.Length < hexLen)
+				baseKey += baseKey;
+			text = baseKey.Substring(0, hexLen);
 			this.dgvKey.Rows[num].Cells[0].Value = text;
 			this.SaveData();
 			this.method_3();
@@ -470,6 +518,212 @@ namespace DMR
 			ChannelForm.data.ClearByEncrypt(keyIndex);
 			this.method_3();
 			((MainForm)base.MdiParent).RefreshRelatedForm(base.GetType());
+		}
+
+		// ClosedGD77: Write encryption keys to radio via USB HID
+		// Uses command byte 7 (MK22) or 8 (STM32) per firmware protocol.
+		private void btnWriteRadio_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				this.SaveData();
+				SyncToKeyStore();
+				int keyCount = KeyStore.Count;
+				if (keyCount == 0)
+				{
+					MessageBox.Show("No keys configured. Add at least one key before writing to radio.");
+					return;
+				}
+
+				DialogResult result = MessageBox.Show(
+					string.Format("Write {0} encryption key(s) to radio?", keyCount),
+					"Write Keys to Radio", MessageBoxButtons.YesNo);
+				if (result != DialogResult.Yes) return;
+
+				var outcome = WriteKeysToRadio();
+				MessageBox.Show(outcome, "Write Keys Result");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error: " + ex.Message);
+			}
+		}
+
+		/// <summary>
+		/// Sync the legacy EncryptForm.data into EncryptionKeyStore.
+		/// The legacy store only holds 8-byte keys and a single global algorithm type.
+		/// This is a best-effort migration — for full 32-byte keys, use the key store directly.
+		/// </summary>
+		private void SyncToKeyStore()
+		{
+			byte globalAlgo = (byte)this.cmbType.SelectedIndex;
+			byte globalKeyLen = (byte)this.cmbKeyLen.SelectedIndex;
+
+			// Map KeyLen enum index -> byte count
+			byte[] keyLenMap = { 4, 8, 5, 16 }; // Length32=0->4, Length64=1->8, Length40=2->5, Length128=3->16
+			byte keyBytes = (globalKeyLen < keyLenMap.Length) ? keyLenMap[globalKeyLen] : (byte)8;
+
+			for (int i = 0; i < 16; i++)
+			{
+				if (EncryptForm.data[i])
+				{
+					EncryptionKeyEntry entry = EncryptionKeyEntry.CreateNew((byte)i);
+					entry.algorithm = globalAlgo;
+					entry.key_length = keyBytes;
+					entry.IsActive = true;
+
+					// Copy legacy key hex (up to 8 bytes) into expanded key storage
+					string legacyHex = EncryptForm.data.GetKey(i);
+					if (!string.IsNullOrEmpty(legacyHex))
+					{
+						entry.KeyHex = legacyHex;
+						entry.key_length = (byte)(legacyHex.Length / 2);
+					}
+					KeyStore.SetKey(i, entry);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Write all active encryption keys from EncryptionKeyStore to the radio via USB HID.
+		///
+		/// Protocol (matches firmware handleCPSRequest -> cpsHandleCommand case 7/8):
+		///   1. Open HID device (VID 0x15A2, PID 0x0073)
+		///   2. Handshake: send PROGRA, receive ACK; send PROG2, receive info; send ACK
+		///   3. For each key: send 53-byte 'C' command packet, wait for ACK
+		///   4. Send ENDW to finalize
+		///
+		/// Packet format: ['C'][cmd=7|8][key_slot][algorithm][key_len][name(16)][key_data(32)]
+		/// </summary>
+		private static string GetKeyStorePath()
+		{
+			return System.IO.Path.Combine(Application.StartupPath, "encryption_keys.bin");
+		}
+
+		private static void SaveKeyStoreToFile()
+		{
+			try { KeyStore.SaveToFile(GetKeyStorePath()); }
+			catch (Exception ex) { System.Diagnostics.Debug.WriteLine("SaveKeyStore: " + ex.Message); }
+		}
+
+		private static void LoadKeyStoreFromFile()
+		{
+			try { KeyStore.LoadFromFile(GetKeyStorePath()); }
+			catch (Exception ex) { System.Diagnostics.Debug.WriteLine("LoadKeyStore: " + ex.Message); }
+		}
+
+		private string WriteKeysToRadio()
+		{
+			const int HID_VID = 0x15A2;
+			const int HID_PID = 0x0073;
+			byte[] CMD_PRG  = new byte[7] { 2, (byte)'P', (byte)'R', (byte)'O', (byte)'G', (byte)'R', (byte)'A' };
+			byte[] CMD_PRG2 = new byte[2] { 77, 2 };
+			byte[] CMD_ACK  = new byte[1] { 65 }; // 'A'
+			byte[] CMD_ENDW = Encoding.ASCII.GetBytes("ENDW");
+
+			HIDSpecifiedDevice device = null;
+			try
+			{
+				device = HIDSpecifiedDevice.FindSpecifiedDevice(HID_VID, HID_PID);
+				if (device == null)
+				{
+					return "Device not found. Connect radio and ensure it is in CPS communication mode.";
+				}
+
+				byte[] recvBuf = new byte[160];
+				int keysWritten = 0;
+				int keysFailed = 0;
+				System.Text.StringBuilder errors = new System.Text.StringBuilder();
+
+				byte cmdByte = GetKeyTransferCommand();
+
+				// ---- Handshake: PROGRA ----
+				Array.Clear(recvBuf, 0, recvBuf.Length);
+				device.SendData(CMD_PRG);
+				device.ReceiveData(recvBuf);
+				if (recvBuf[0] != CMD_ACK[0])
+				{
+					device.Dispose();
+					return "Handshake failed (PROGRA). Is radio in CPS mode?";
+				}
+
+				// ---- Handshake: PROG2 ----
+				Array.Clear(recvBuf, 0, recvBuf.Length);
+				device.SendData(CMD_PRG2);
+				device.ReceiveData(recvBuf);
+				// recvBuf[0..7] contains device info, we don't validate model for key transfer
+
+				// ---- Handshake: ACK ----
+				Array.Clear(recvBuf, 0, recvBuf.Length);
+				device.SendData(CMD_ACK);
+				device.ReceiveData(recvBuf);
+				if (recvBuf[0] != CMD_ACK[0])
+				{
+					device.Dispose();
+					return "Handshake failed (ACK).";
+				}
+
+				// ---- Send each key ----
+				for (int slot = 0; slot < EncryptionKeyStore.MAX_SLOTS; slot++)
+				{
+					if (!KeyStore.Keys[slot].IsActive) continue;
+
+					byte[] packet = KeyStore.BuildTransferPacket(slot, cmdByte);
+
+					Array.Clear(recvBuf, 0, recvBuf.Length);
+					device.SendData(packet);
+
+					// Wait for ACK or timeout
+					if (device.ReceiveData(recvBuf) && recvBuf[0] == CMD_ACK[0])
+					{
+						keysWritten++;
+					}
+					else if (recvBuf[0] != 0)
+					{
+						keysFailed++;
+						string keyName = KeyStore.Keys[slot].Name;
+						if (string.IsNullOrEmpty(keyName)) keyName = "Key " + (slot + 1);
+						errors.AppendLine(keyName + ": unexpected response 0x" + recvBuf[0].ToString("X2"));
+					}
+					else
+					{
+						keysFailed++;
+						string keyName = KeyStore.Keys[slot].Name;
+						if (string.IsNullOrEmpty(keyName)) keyName = "Key " + (slot + 1);
+						errors.AppendLine(keyName + ": no response (timeout)");
+					}
+				}
+
+				// ---- Finalize ----
+				Array.Clear(recvBuf, 0, recvBuf.Length);
+				device.SendData(CMD_ENDW);
+				device.ReceiveData(recvBuf);
+
+				device.Dispose();
+				device = null;
+
+				if (keysFailed == 0)
+				{
+					return string.Format("Success: {0} key(s) written to radio.", keysWritten);
+				}
+				else
+				{
+					return string.Format("{0} written, {1} failed.\n{2}",
+						keysWritten, keysFailed, errors.ToString());
+				}
+			}
+			catch (TimeoutException ex)
+			{
+				return "Communication timeout: " + ex.Message;
+			}
+			catch (Exception ex)
+			{
+				return "Error: " + ex.Message;
+			}
+			finally
+			{
+				if (device != null) device.Dispose();
+			}
 		}
 
 		private void method_3()
@@ -496,25 +750,23 @@ namespace DMR
 			if (this.method_0() != selectedIndex)
 			{
 				this.method_1(selectedIndex);
-				if (selectedIndex == 0)
+				// Key length hex char counts: 32-bit=8, 64-bit=16, 40-bit=10, 128-bit=32
+				int[] hexLenMap = { 8, 16, 10, 32 };
+				int maxHex = (selectedIndex < hexLenMap.Length) ? hexLenMap[selectedIndex] : 16;
+				this.txtKey.MaxInputLength = maxHex;
+				for (num = 0; num < this.dgvKey.Rows.Count; num++)
 				{
-					this.txtKey.MaxInputLength = 8;
-					for (num = 0; num < this.dgvKey.Rows.Count; num++)
+					string text = this.dgvKey.Rows[num].Cells[0].Value as string;
+					if (string.IsNullOrEmpty(text)) text = "";
+					if (text.Length > maxHex)
 					{
-						string text = this.dgvKey.Rows[num].Cells[0].Value as string;
-						text = text.Substring(0, 8);
-						this.dgvKey.Rows[num].Cells[0].Value = text;
+						text = text.Substring(0, maxHex);
 					}
-				}
-				else
-				{
-					this.txtKey.MaxInputLength = 16;
-					for (num = 0; num < this.dgvKey.Rows.Count; num++)
+					else if (text.Length < maxHex)
 					{
-						string text2 = this.dgvKey.Rows[num].Cells[0].Value as string;
-						text2 += text2;
-						this.dgvKey.Rows[num].Cells[0].Value = text2;
+						text = text.PadRight(maxHex, '0');
 					}
+					this.dgvKey.Rows[num].Cells[0].Value = text;
 				}
 			}
 		}
@@ -628,8 +880,8 @@ namespace DMR
 			this.cmbType.Items.AddRange(new object[3]
 			{
 				"None",
-				"Basic",
-				"Enhanced"
+				"ARC4",
+				"AES-128"
 
 			});
 			this.cmbType.Location = new Point(168, 41);
@@ -645,11 +897,12 @@ namespace DMR
 			this.lblKeyLen.TextAlign = ContentAlignment.MiddleRight;
 			this.cmbKeyLen.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.cmbKeyLen.FormattingEnabled = true;
-			this.cmbKeyLen.Items.AddRange(new object[3]
+			this.cmbKeyLen.Items.AddRange(new object[4]
 			{
 				"32",
 				"64",
-				"40"
+				"40",
+				"128"
 			});
 			this.cmbKeyLen.Location = new Point(168, 71);
 			this.cmbKeyLen.Name = "cmbKeyLen";
@@ -685,6 +938,14 @@ namespace DMR
 			this.btnAdd.Text = "Add";
 			this.btnAdd.UseVisualStyleBackColor = true;
 			this.btnAdd.Click += new EventHandler(this.btnAdd_Click);
+			this.btnWriteRadio = new Button();
+			this.btnWriteRadio.Location = new Point(95, 504);
+			this.btnWriteRadio.Name = "btnWriteRadio";
+			this.btnWriteRadio.Size = new Size(200, 30);
+			this.btnWriteRadio.TabIndex = 6;
+			this.btnWriteRadio.Text = "Write Keys to Radio";
+			this.btnWriteRadio.UseVisualStyleBackColor = true;
+			this.btnWriteRadio.Click += new EventHandler(this.btnWriteRadio_Click);
 			this.pnlEncrypt.AutoScroll = true;
 			this.pnlEncrypt.AutoSize = true;
 			this.pnlEncrypt.Controls.Add(this.cmbType);
@@ -693,6 +954,7 @@ namespace DMR
 			this.pnlEncrypt.Controls.Add(this.btnDel);
 			this.pnlEncrypt.Controls.Add(this.lblKeyLen);
 			this.pnlEncrypt.Controls.Add(this.btnAdd);
+			this.pnlEncrypt.Controls.Add(this.btnWriteRadio);
 			this.pnlEncrypt.Controls.Add(this.cmbKeyLen);
 			this.pnlEncrypt.Dock = DockStyle.Fill;
 			this.pnlEncrypt.Location = new Point(0, 0);
@@ -716,18 +978,19 @@ namespace DMR
 
 		static EncryptForm()
 		{
-			
+
 			EncryptForm.SZ_ENCRYPT_TYPE = new string[3]
 			{
 				"None",
-				"Basic",
-				"Ehnanced"
+				"ARC4",
+				"AES-128"
 			};
-			EncryptForm.SZ_KEY_LEN = new string[3]
+			EncryptForm.SZ_KEY_LEN = new string[4]
 			{
 				"32",
 				"64",
-				"40"
+				"40",
+				"128"
 			};
 			EncryptForm.data = new Encrypt();
 		}

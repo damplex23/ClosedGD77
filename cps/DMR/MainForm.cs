@@ -2701,7 +2701,7 @@ namespace DMR
 
         private void loadDefaultOrInitialFile(string overRideWithFile = null)
         {
-            string text = Application.StartupPath + "\\" + DEFAULT_DATA_FILE_NAME;
+            string text = Path.Combine(Application.StartupPath, DEFAULT_DATA_FILE_NAME);
             if (overRideWithFile != null)
             {
                 text = overRideWithFile;
@@ -3838,7 +3838,7 @@ namespace DMR
         {
             this.tsmiLanguage.DropDownItems.Clear();
             string startupPath = Application.StartupPath;
-            string[] array = Directory.GetFiles(startupPath + "\\Language", "*.xml").Where(MainForm.smethod_3).ToArray();
+            string[] array = Directory.GetFiles(Path.Combine(startupPath, "Language"), "*.xml").Where(MainForm.smethod_3).ToArray();
             if (array.Length > 0)
             {
                 int num = 0;

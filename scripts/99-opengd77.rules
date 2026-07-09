@@ -1,0 +1,13 @@
+# ClosedGD77 / OpenGD77 USB udev rules for Linux
+# Copy to /etc/udev/rules.d/ and run: sudo udevadm control --reload-rules
+#
+# Device: HID VID=0x15A2 PID=0x0073 (NXP/Freescale HID bootloader used by
+# GD-77, GD-77S, DM-1801, RD-5R, and all OpenGD77-based radios)
+SUBSYSTEM=="usb", ATTR{idVendor}=="15a2", ATTR{idProduct}=="0073", MODE="0666", GROUP="plugdev"
+
+# STM32 DFU bootloader (DM-1701, UV380, RT-3S)
+# Device: STM32 DFU VID=0x0483 PID=0xDF11
+SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="df11", MODE="0666", GROUP="plugdev"
+
+# Additional STM32 DFU PIDs that may appear
+SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="df13", MODE="0666", GROUP="plugdev"

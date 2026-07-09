@@ -644,6 +644,9 @@ internal class FirmwareUpdate : Win32Usb, IFirmwareUpdate
 
 	private void method_11(byte[] byte_0, out byte[] byte_1, out uint uint_0, out uint uint_1)
 	{
+		byte_1 = null;
+		uint_0 = 0u;
+		uint_1 = 0u;
 		uint num = 0u;
 		uint num2 = 0u;
 		try

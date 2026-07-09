@@ -1380,7 +1380,7 @@ namespace DMR
                 }
                 set
                 {
-                    if (value >= 0 && this.sql <= 21)
+                    if (value >= 0 && value <= 21)
                     {
                         this.sql = (byte)value;
                     }
@@ -3895,7 +3895,7 @@ namespace DMR
             string text = "";
             this.cmbRxTone.Items.Clear();
             this.cmbTxTone.Items.Clear();
-            StreamReader streamReader = new StreamReader(Application.StartupPath + "\\Tone.txt", Encoding.Default);
+            StreamReader streamReader = new StreamReader(Path.Combine(Application.StartupPath, "Tone.txt"), Encoding.Default);
             while ((text = streamReader.ReadLine()) != null)
             {
                 this.cmbRxTone.Items.Add(text);

@@ -452,6 +452,9 @@ static void loadChannelData(bool useChannelDataInMemory, bool loadVoicePromptAnn
 		}
 	}
 
+	// ClosedGD77: Re-apply encryption on every channel switch
+	encryption_apply_channel_settings(currentChannelData->encrypt);
+
 	clearActiveDMRID();
 	trxSetFrequency(currentChannelData->rxFreq, currentChannelData->txFreq, DMR_MODE_AUTO);
 	trxSetModeAndBandwidth(currentChannelData->chMode, ((currentChannelData->flag4 & 0x02) == 0x02));

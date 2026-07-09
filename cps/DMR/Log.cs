@@ -16,7 +16,7 @@ namespace DMR
 		static Log()
 		{
 			
-			Log.logFile = Application.StartupPath + "\\Log.txt";
+			Log.logFile = Path.Combine(Application.StartupPath, "Log.txt");
 		}
 	}
 }

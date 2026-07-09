@@ -1025,6 +1025,7 @@ inline static void HRC6000TimeslotInterruptHandler(void)
 			break;
 
 		case DMR_STATE_RX_END: // Stop RX
+			encryption_reset_per_call(); // ClosedGD77: reset RX keystream between calls
 			clearActiveDMRID();
 			init_digital_DMR_RX();
 			disableAudioAmp(AUDIO_AMP_MODE_RF);

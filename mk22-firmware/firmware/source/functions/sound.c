@@ -259,7 +259,7 @@ void soundSendData(void)
 		// ClosedGD77: Analog scramble on RX audio before speaker
 		if (encryption_is_analog_scramble_enabled() && trxGetMode() == RADIO_MODE_ANALOG)
 		{
-			encryption_scramble_audio(audioAndHotspotDataBuffer.wavbuffer[wavbuffer_read_idx], WAV_BUFFER_SIZE);
+			encryption_scramble_audio((int16_t*)(void*)audioAndHotspotDataBuffer.wavbuffer[wavbuffer_read_idx], WAV_BUFFER_SIZE);
 		}
 
 		for (int i = 0; i < (WAV_BUFFER_SIZE / 2); i++)
@@ -313,7 +313,7 @@ void soundReceiveData(void)
 			// ClosedGD77: Analog scramble TX audio from microphone
 			if (encryption_is_analog_scramble_enabled() && trxGetMode() == RADIO_MODE_ANALOG)
 			{
-				encryption_scramble_audio(audioAndHotspotDataBuffer.wavbuffer[wavbuffer_write_idx], WAV_BUFFER_SIZE);
+				encryption_scramble_audio((int16_t*)(void*)audioAndHotspotDataBuffer.wavbuffer[wavbuffer_write_idx], WAV_BUFFER_SIZE);
 			}
 
 			wavbuffer_write_idx++;

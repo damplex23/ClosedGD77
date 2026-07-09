@@ -7,6 +7,11 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using UsbLibrary;
+#if LINUX_BUILD
+using HIDSpecifiedDevice = UsbLibrary.CrossPlatformSpecifiedDevice;
+#else
+using HIDSpecifiedDevice = UsbLibrary.SpecifiedDevice;
+#endif
 
 internal class CodeplugComms
 {
@@ -145,10 +150,10 @@ internal class CodeplugComms
         int addr32 = 0;
         int addr16 = 0;
         int pageAddr = 0;
-        SpecifiedDevice specifiedDevice = null;
+        HIDSpecifiedDevice specifiedDevice = null;
         try
         {
-            specifiedDevice = SpecifiedDevice.FindSpecifiedDevice(HID_VID, HID_PID);//0x152A HID_PID
+            specifiedDevice = HIDSpecifiedDevice.FindSpecifiedDevice(HID_VID, HID_PID);//0x152A HID_PID
             if (specifiedDevice == null)
             {
                 if (this.OnFirmwareUpdateProgress != null)
@@ -199,7 +204,7 @@ internal class CodeplugComms
                                 array4[5] = (byte)(pageAddr >> 16);
                                 array4[6] = (byte)(pageAddr >> 8);
                                 array4[7] = (byte)pageAddr;
-                                Console.WriteLine(SpecifiedDevice.ByteArrayToString(array4));
+                                Console.WriteLine(HIDSpecifiedDevice.ByteArrayToString(array4));
                                 Array.Clear(usbBuf, 0, usbBuf.Length);
                                 specifiedDevice.SendData(array4, 0, array4.Length);
                                 specifiedDevice.ReceiveData(usbBuf);
@@ -269,10 +274,10 @@ internal class CodeplugComms
         int addr32 = 0;
         int addr16 = 0;
         int pageAddr = 0;
-        SpecifiedDevice specifiedDevice = null;
+        HIDSpecifiedDevice specifiedDevice = null;
         try
         {
-            specifiedDevice = SpecifiedDevice.FindSpecifiedDevice(HID_VID, HID_PID);//0x152A HID_PID
+            specifiedDevice = HIDSpecifiedDevice.FindSpecifiedDevice(HID_VID, HID_PID);//0x152A HID_PID
             if (specifiedDevice == null)
             {
                 if (this.OnFirmwareUpdateProgress != null)
@@ -418,10 +423,10 @@ internal class CodeplugComms
         //		dumpFlash();// testing only...
         //		return;
 
-        SpecifiedDevice specifiedDevice = null;
+        HIDSpecifiedDevice specifiedDevice = null;
         try
         {
-            specifiedDevice = SpecifiedDevice.FindSpecifiedDevice(HID_VID, HID_PID);//0x152A HID_PID
+            specifiedDevice = HIDSpecifiedDevice.FindSpecifiedDevice(HID_VID, HID_PID);//0x152A HID_PID
             if (specifiedDevice == null)
             {
                 if (this.OnFirmwareUpdateProgress != null)
@@ -845,7 +850,7 @@ internal class CodeplugComms
         array3[4] = (byte)(hour / 10 << 4 | hour % 10);
         array3[5] = (byte)(minute / 10 << 4 | minute % 10);
         Array.Copy(array3, 0, array2, Settings.ADDR_DEVICE_INFO + Settings.OFS_LAST_PRG_TIME, 6);
-        SpecifiedDevice specifiedDevice = SpecifiedDevice.FindSpecifiedDevice(HID_VID, 0x0073);
+        HIDSpecifiedDevice specifiedDevice = HIDSpecifiedDevice.FindSpecifiedDevice(HID_VID, 0x0073);
 
         if (specifiedDevice == null)
         {

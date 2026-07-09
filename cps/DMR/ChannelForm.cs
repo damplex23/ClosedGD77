@@ -1601,7 +1601,7 @@ namespace DMR
                 }
                 set
                 {
-                    if (value >= 0 && this.sql <= 21)
+                    if (value >= 0 && value <= 21)
                     {
                         this.sql = (byte)value;
                     }
@@ -3312,7 +3312,7 @@ namespace DMR
             this.cmbRxTone.Items.Clear();
             this.cmbTxTone.Items.Clear();
             NumberFormatInfo numberFormat = CultureInfo.CurrentCulture.NumberFormat;
-            StreamReader streamReader = new StreamReader(Application.StartupPath + "\\Tone.txt", Encoding.Default);
+            StreamReader streamReader = new StreamReader(Path.Combine(Application.StartupPath, "Tone.txt"), Encoding.Default);
             while ((text = streamReader.ReadLine()) != null)
             {
                 text2 = text.Replace(".", numberFormat.NumberDecimalSeparator);

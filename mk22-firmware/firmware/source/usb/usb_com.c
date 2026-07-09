@@ -334,8 +334,12 @@ static void cpsHandleCommand(void)
 				memcpy(newKey.key_data, &com_requestbuffer[21], ENC_MAX_KEY_SIZE);
 
 				encryption_key_store(keySlot, &newKey);
+
+				// ACK back to CPS so WriteKeysToRadio doesn't timeout
+				usbComSendBuf[0] = 'A';
+				USB_DeviceCdcAcmSend(s_cdcVcom.cdcAcmHandle, USB_CDC_VCOM_BULK_IN_ENDPOINT, usbComSendBuf, 1);
+				return;  // skip generic '-' response below
 			}
-			break;
 		case 6:
 			{
 				int subCommand = com_requestbuffer[2];

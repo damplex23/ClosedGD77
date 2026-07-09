@@ -7,3 +7,12 @@ build/
 Debug_*/
 Release_*/
 *.zip
+
+# Large toolchain archives (exceed GitHub 100MB limit)
+armgcc/*.tar.xz
+armgcc/*.tar.gz
+*.zip
+
+# Large toolchain archives (exceed GitHub 100MB limit)
+armgcc/*.tar.xz
+armgcc/*.tar.gz

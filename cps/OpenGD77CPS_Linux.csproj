@@ -10,6 +10,7 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <TargetFrameworkProfile />
+    <DefineConstants>LINUX_BUILD;$(DefineConstants)</DefineConstants>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -48,7 +49,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
-    <DefineConstants>OpenGD77</DefineConstants>
+    <DefineConstants>LINUX_BUILD;OpenGD77</DefineConstants>
     <OutputPath>bin\ReleaseOpenGD77\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_3.1.x|x86'">
@@ -70,7 +71,7 @@
     <DefineConstants>CP_VER_3_1_X</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DefineConstants>OpenGD77</DefineConstants>
+    <DefineConstants>LINUX_BUILD;OpenGD77</DefineConstants>
     <OutputPath>bin\Debug_OpenGD77\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
@@ -91,6 +92,9 @@
     <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=3.0.4.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="LibUsbDotNet">
+      <HintPath>.\LibUsbDotNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +204,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="FirmwareUpdate.cs" />
+    <Compile Include="FirmwareUpdate_CrossPlatform.cs" />
     <Compile Include="Common\AutoClosingMessageBox.cs" />
     <Compile Include="DMR.Properties\Resources.cs" />
     <Compile Include="DMR.Properties\Settings.cs" />
@@ -246,6 +251,7 @@
     <Compile Include="DMR\EmergencyForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DMR\EncryptionKeyStore.cs" />
     <Compile Include="DMR\EncryptForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -324,6 +330,7 @@
     <Compile Include="ReadWriteCsv\CsvFileReader.cs" />
     <Compile Include="ReadWriteCsv\CsvFileWriter.cs" />
     <Compile Include="ReadWriteCsv\CsvRow.cs" />
+    <Compile Include="UsbLibrary\CrossPlatformHIDDevice.cs" />
     <Compile Include="UsbLibrary\DataRecievedEventArgs.cs" />
     <Compile Include="UsbLibrary\DataRecievedEventHandler.cs" />
     <Compile Include="UsbLibrary\DataSendEventArgs.cs" />
